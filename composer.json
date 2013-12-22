@@ -1,0 +1,32 @@
+{
+    "name": "19ft/nf-development-mode",
+    "description": "ZF2 development mode module",
+    "keywords": [
+        "framework", "zf2"
+    ],
+    "homepage": "http://github.com/19ft/NFDevelopmentMode",
+    "type": "library",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Rob Allen",
+            "email": "rob@19ft.com",
+            "homepage": "http://19ft.com"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "./Module.php",
+            "./DevelopmentModeController.php"
+        ]
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zend-console": ">=2.2.2",
+        "zendframework/zend-mvc": ">=2.2.2"
+    },
+    "suggest": {
+        "zendframework/zend-developer-tools": "dev-master",
+        "zendframework/zend-tool": "dev-master"
+    }
+}
