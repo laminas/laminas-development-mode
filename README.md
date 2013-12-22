@@ -4,7 +4,7 @@ This ZF2 development mode module is an extraction of the Apigility Skeleton's De
 
 ##Installation with Composer
 
-1. Add `"19ft/nf-development-mode": "1.*"` to the `"require" section your `composer.json` file and run `php composer.phar update`.
+1. Add `"19ft/nf-development-mode": "1.*"` to the `"require"` section your `composer.json` file and run `php composer.phar update`.
 2. Copy `development.config.dist` to `config/development.config.dist` and edit as required. Commit this file to your VCS.
 3. Add any development modules to the `"require-dev"` section of your application's `composer.json`. e.g:
    
