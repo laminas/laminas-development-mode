@@ -40,7 +40,7 @@ This ZF2 development mode module is an extraction of the Apigility Skeleton's De
 ## To disable development mode
 
     cd path/to/install
-    php public/index.php development enable # put the skeleton in development mode
+    php public/index.php development disable
 
 
 Note: Don't run development mode on your production server.
