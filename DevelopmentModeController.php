@@ -33,6 +33,11 @@ class DevelopmentModeController extends AbstractActionController
             // nothing to do
             return "Already in development mode!\n";
         }
+        
+        if (!file_exists('config/development.config.php.dist')) {
+            return "MISSING \"config/development.config.php.dist\". Could not switch to development mode!\n";
+        }
+        
         copy('config/development.config.php.dist', 'config/development.config.php');
         return "You are now in development mode.\n";
     }
