@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 2013 Rob Allen (http://19ft.com)
  */
 
-namespace NFDevelopmentMode;
+namespace ZF\DevelopmentMode;
 
 use Zend\Console\Adapter\AdapterInterface as Console;
 
@@ -15,7 +15,7 @@ class Module
         return array(
             'controllers' => array(
                 'invokables' => array(
-                    'NFDevelopmentMode\DevelopmentModeController' => 'NFDevelopmentMode\DevelopmentModeController',
+                    'ZF\DevelopmentMode\DevelopmentModeController' => 'ZF\DevelopmentMode\DevelopmentModeController',
                 ),
             ),
             'console' => array(
@@ -25,7 +25,7 @@ class Module
                             'options' => array(
                                 'route' => 'development disable',
                                 'defaults' => array(
-                                    'controller' => 'NFDevelopmentMode\DevelopmentModeController',
+                                    'controller' => 'ZF\DevelopmentMode\DevelopmentModeController',
                                     'action'     => 'disable',
                                 ),
                             ),
@@ -34,7 +34,7 @@ class Module
                             'options' => array(
                                 'route' => 'development enable',
                                 'defaults' => array(
-                                    'controller' => 'NFDevelopmentMode\DevelopmentModeController',
+                                    'controller' => 'ZF\DevelopmentMode\DevelopmentModeController',
                                     'action'     => 'enable',
                                 ),
                             ),
@@ -54,8 +54,8 @@ class Module
     public function getConsoleUsage(Console $console)
     {
         return array(
-            'development enable' => 'Enable the development mode (do not use in production)',
-            'development disable' => 'Disable the development mode'
+            'development enable'  => 'Enable development mode (do not use in production)',
+            'development disable' => 'Disable development mode'
         );
     }
 }

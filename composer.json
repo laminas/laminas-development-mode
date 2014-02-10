@@ -1,13 +1,18 @@
 {
-    "name": "19ft/nf-development-mode",
+    "name": "zfcampus/zf-development-mode",
     "description": "ZF2 development mode module",
     "keywords": [
         "framework", "zf2"
     ],
-    "homepage": "http://github.com/19ft/NFDevelopmentMode",
+    "homepage": "http://github.com/zfcampus/zf-development-mode",
     "type": "library",
     "license": "BSD-3-Clause",
     "authors": [
+        {
+            "name": "Ralph Schindler",
+            "email": "ralph.s@zend.com",
+            "homepage": "http://framework.zend.com"
+        },
         {
             "name": "Rob Allen",
             "email": "rob@19ft.com",

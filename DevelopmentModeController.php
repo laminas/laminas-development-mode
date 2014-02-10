@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 2013 Zend Technologies USA Inc. (http://www.zend.com)
  */
 
-namespace NFDevelopmentMode;
+namespace ZF\DevelopmentMode;
 
 use Zend\Console\Request as ConsoleRequest;
 use Zend\EventManager\EventManagerInterface;
@@ -48,6 +48,7 @@ class DevelopmentModeController extends AbstractActionController
             // nothing to do
             return "Development mode was already disabled.\n";
         }
+
         unlink('config/development.config.php');
         return "Development mode is now disabled.\n";
     }
