@@ -44,11 +44,11 @@ class Module
             ),
         );
     }
-    
+
     /**
      * Return the console usage for this module
      *
-     * @param Console $console            
+     * @param Console $console
      * @return array
      */
     public function getConsoleUsage(Console $console)
