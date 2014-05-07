@@ -27,16 +27,14 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.0-dev"
-        },
-        "branch-alias": {
+            "dev-master": "2.0-dev",
             "dev-develop": "2.1-dev"
         }
     },
     "require": {
         "php": ">=5.3.23",
-        "zendframework/zend-console": ">=2.2.2",
-        "zendframework/zend-mvc": ">=2.2.2"
+        "zendframework/zend-console": ">=2.2.2,<3.0",
+        "zendframework/zend-mvc": ">=2.2.2,<3.0"
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "*@dev"
