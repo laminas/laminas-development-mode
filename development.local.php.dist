@@ -5,3 +5,4 @@ return array(
         'display_exceptions' => true,
     )
 );
+
