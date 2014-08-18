@@ -39,6 +39,13 @@ class DevelopmentModeController extends AbstractActionController
         }
 
         copy('config/development.config.php.dist', 'config/development.config.php');
+
+
+        if (file_exists('config/autoload/development.local.php.dist')) {
+            // optional application config override
+            copy('config/autoload/development.local.php.dist', 'config/autoload/development.local.php');
+        }
+
         return "You are now in development mode.\n";
     }
 
@@ -47,6 +54,11 @@ class DevelopmentModeController extends AbstractActionController
         if (!file_exists('config/development.config.php')) {
             // nothing to do
             return "Development mode was already disabled.\n";
+        }
+
+        if (file_exists('config/autoload/development.local.php')) {
+            // optional application config override
+            unlink('config/autoload/development.local.php');
         }
 
         unlink('config/development.config.php');
