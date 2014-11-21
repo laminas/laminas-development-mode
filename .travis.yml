@@ -16,7 +16,7 @@ before_script:
   - composer install --dev --prefer-source
 
 script:
-  - ./vendor/bin/php-cs-fixer -v fix . --dry-run --config-file ./.php_cs
+    - ./vendor/bin/phpcs --standard=PSR2 --ignore=vendor .
   
 notifications:
   irc: "irc.freenode.org#apigility-dev"
