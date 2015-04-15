@@ -45,7 +45,6 @@ Installation with Composer
    with
 
    ```php
-        // Run the application!
         // Config
         $appConfig = include 'config/application.config.php';
 
