@@ -22,7 +22,7 @@
     "autoload": {
         "classmap": [
             "./Module.php",
-            "./DevelopmentModeController.php"
+            "./DevelopmentModeController.php",
             "./DevelopmentModeControllerFactory.php"
         ]
     },
