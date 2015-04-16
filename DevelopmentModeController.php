@@ -24,8 +24,14 @@ class DevelopmentModeController extends AbstractActionController
      */
     private $configCacheKey;
 
+    /**
+     * @param null|string $configCacheDir
+     * @param null|string $configCacheKey
+     */
     public function __construct($configCacheDir, $configCacheKey)
     {
+        $this->configCacheDir = $configCacheDir;
+        $this->configCacheKey = $configCacheKey;
     }
 
     public function setEventManager(EventManagerInterface $events)
