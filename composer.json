@@ -23,6 +23,7 @@
         "classmap": [
             "./Module.php",
             "./DevelopmentModeController.php"
+            "./DevelopmentModeControllerFactory.php"
         ]
     },
     "extra": {

@@ -93,7 +93,7 @@ class DevelopmentModeController extends AbstractActionController
 
     /**
      * Retrieve the config cache file, if any.
-     * 
+     *
      * @return false|string
      */
     private function getConfigCacheFile()
