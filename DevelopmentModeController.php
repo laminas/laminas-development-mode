@@ -12,6 +12,28 @@ use Zend\Mvc\Controller\AbstractActionController;
 
 class DevelopmentModeController extends AbstractActionController
 {
+    const CONFIG_CACHE_BASE = 'module-config-cache';
+
+    /**
+     * @param string Configuration cache directory, if any
+     */
+    private $configCacheDir;
+
+    /**
+     * @param string Configuration cache key, if any
+     */
+    private $configCacheKey;
+
+    /**
+     * @param null|string $configCacheDir
+     * @param null|string $configCacheKey
+     */
+    public function __construct($configCacheDir, $configCacheKey)
+    {
+        $this->configCacheDir = $configCacheDir;
+        $this->configCacheKey = $configCacheKey;
+    }
+
     public function setEventManager(EventManagerInterface $events)
     {
         parent::setEventManager($events);
@@ -40,10 +62,14 @@ class DevelopmentModeController extends AbstractActionController
 
         copy('config/development.config.php.dist', 'config/development.config.php');
 
-
         if (file_exists('config/autoload/development.local.php.dist')) {
             // optional application config override
             copy('config/autoload/development.local.php.dist', 'config/autoload/development.local.php');
+        }
+
+        $configCacheFile = $this->getConfigCacheFile();
+        if ($configCacheFile && file_exists($configCacheFile)) {
+            unlink($configCacheFile);
         }
 
         return "You are now in development mode.\n";
@@ -63,5 +89,25 @@ class DevelopmentModeController extends AbstractActionController
 
         unlink('config/development.config.php');
         return "Development mode is now disabled.\n";
+    }
+
+    /**
+     * Retrieve the config cache file, if any.
+     *
+     * @return false|string
+     */
+    private function getConfigCacheFile()
+    {
+        if (empty($this->configCacheDir)) {
+            return false;
+        }
+
+        $path = sprintf('%s/%s.', $this->configCacheDir, self::CONFIG_CACHE_BASE);
+
+        if (! empty($this->configCacheKey)) {
+            $path .= $this->configCacheKey . '.';
+        }
+
+        return $path . 'php';
     }
 }
