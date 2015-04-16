@@ -14,8 +14,9 @@ class Module
     {
         return array(
             'controllers' => array(
-                'invokables' => array(
-                    'ZF\DevelopmentMode\DevelopmentModeController' => 'ZF\DevelopmentMode\DevelopmentModeController',
+                'factories' => array(
+                    'ZF\DevelopmentMode\DevelopmentModeController' =>
+                        'ZF\DevelopmentMode\DevelopmentModeControllerFactory',
                 ),
             ),
             'console' => array(
