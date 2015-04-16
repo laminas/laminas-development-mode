@@ -65,6 +65,10 @@ cd path/to/install
 php public/index.php development enable
 ```
 
+Note: enabling development mode will also clear your module configuation cache,
+to allow safely updating dependencies and ensuring any new configuration is
+picked up by your application.
+
 To disable development mode
 ---------------------------
 
