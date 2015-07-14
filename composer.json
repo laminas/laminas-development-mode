@@ -34,11 +34,11 @@
     },
     "require": {
         "php": ">=5.3.23",
-        "zendframework/zend-console": ">=2.2.2,<3.0",
-        "zendframework/zend-mvc": ">=2.2.2,<3.0"
+        "zendframework/zend-console": ">=2.2.2,<2.5",
+        "zendframework/zend-mvc": ">=2.2.2,<2.5"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "~1.5"
+        "squizlabs/php_codesniffer": "~2.3"
     },
     "suggest": {
         "zendframework/zend-developer-tools": "dev-master",
