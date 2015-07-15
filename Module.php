@@ -12,38 +12,38 @@ class Module
 {
     public function getConfig()
     {
-        return array(
-            'controllers' => array(
-                'factories' => array(
+        return [
+            'controllers' => [
+                'factories' => [
                     'ZF\DevelopmentMode\DevelopmentModeController' =>
                         'ZF\DevelopmentMode\DevelopmentModeControllerFactory',
-                ),
-            ),
-            'console' => array(
-                'router' => array(
-                    'routes' => array(
-                        'development-disable' => array(
-                            'options' => array(
+                ],
+            ],
+            'console' => [
+                'router' => [
+                    'routes' => [
+                        'development-disable' => [
+                            'options' => [
                                 'route' => 'development disable',
-                                'defaults' => array(
+                                'defaults' => [
                                     'controller' => 'ZF\DevelopmentMode\DevelopmentModeController',
                                     'action'     => 'disable',
-                                ),
-                            ),
-                        ),
-                        'development-enable' => array(
-                            'options' => array(
+                                ],
+                            ],
+                        ],
+                        'development-enable' => [
+                            'options' => [
                                 'route' => 'development enable',
-                                'defaults' => array(
+                                'defaults' => [
                                     'controller' => 'ZF\DevelopmentMode\DevelopmentModeController',
                                     'action'     => 'enable',
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        );
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -54,9 +54,9 @@ class Module
      */
     public function getConsoleUsage(Console $console)
     {
-        return array(
+        return [
             'development enable'  => 'Enable development mode (do not use in production)',
             'development disable' => 'Disable development mode'
-        );
+        ];
     }
 }
