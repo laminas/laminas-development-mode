@@ -67,10 +67,7 @@ class DevelopmentModeController extends AbstractActionController
             copy('config/autoload/development.local.php.dist', 'config/autoload/development.local.php');
         }
 
-        $configCacheFile = $this->getConfigCacheFile();
-        if ($configCacheFile && file_exists($configCacheFile)) {
-            unlink($configCacheFile);
-        }
+        $this->removeConfigCacheFile($this->getConfigCacheFile());
 
         return "You are now in development mode.\n";
     }
@@ -88,7 +85,21 @@ class DevelopmentModeController extends AbstractActionController
         }
 
         unlink('config/development.config.php');
+
+        $this->removeConfigCacheFile($this->getConfigCacheFile());
+
         return "Development mode is now disabled.\n";
+    }
+
+    /**
+     * Removes the application configuration cache file, if present.
+     *
+     */
+    private function removeConfigCacheFile($configCacheFile)
+    {
+        if ($configCacheFile && file_exists($configCacheFile)) {
+            unlink($configCacheFile);
+        }
     }
 
     /**
