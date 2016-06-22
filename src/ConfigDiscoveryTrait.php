@@ -88,9 +88,7 @@ trait ConfigDiscoveryTrait
         }
 
         $config = $this->getApplicationConfig();
-        if (isset($config['module_listener_options']['cache_dir'])
-            && ! empty($config['module_listener_options']['cache_dir'])
-        ) {
+        if (isset($config['module_listener_options']['cache_dir'])) {
             $this->configCacheDir = $config['module_listener_options']['cache_dir'];
         }
 
@@ -109,9 +107,7 @@ trait ConfigDiscoveryTrait
         }
 
         $config = $this->getApplicationConfig();
-        if (isset($config['module_listener_options']['config_cache_key'])
-            && ! empty($config['module_listener_options']['config_cache_key'])
-        ) {
+        if (isset($config['module_listener_options']['config_cache_key'])) {
             $this->configCacheKey = $config['module_listener_options']['config_cache_key'];
         }
 
