@@ -3,8 +3,6 @@
 return [
     // Development time modules
     'modules' => [
-        'ZFTool',
-        'ZendDeveloperTools',
     ],
 
     'module_listener_options' => [
