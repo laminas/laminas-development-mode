@@ -2,11 +2,15 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 2.2.0 - TBD
+## 3.0.0 - TBD
 
 ### Added
 
-- Nothing.
+- [#19](https://github.com/zfcampus/zf-development-mode/pull/19) adds a
+  standalone vendor binary, which may be invoked as
+  `./vendor/bin/zf-development-mode`.
+- [#19](https://github.com/zfcampus/zf-development-mode/pull/19) adds support
+  for PHP 7.
 
 ### Deprecated
 
@@ -14,7 +18,13 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- Nothing.
+- [#19](https://github.com/zfcampus/zf-development-mode/pull/19) removes
+  integration with zend-mvc/zend-console.
+- [#19](https://github.com/zfcampus/zf-development-mode/pull/19) removes
+  the suggestions to install ZendDeveloperTools and ZFTool, as they are not
+  ready for zend-mvc v3.
+- [#19](https://github.com/zfcampus/zf-development-mode/pull/19) removes
+  support for PHP versions less than 5.6.
 
 ### Fixed
 
