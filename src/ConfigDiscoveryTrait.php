@@ -30,16 +30,6 @@ trait ConfigDiscoveryTrait
     private $configCacheBase = 'module-config-cache';
 
     /**
-     * @var null|string
-     */
-    private $configCacheDir;
-
-    /**
-     * @var null|string
-     */
-    private $configCacheKey;
-
-    /**
      * Removes the application configuration cache file, if present.
      *
      * @param string $configCacheFile
@@ -83,16 +73,12 @@ trait ConfigDiscoveryTrait
      */
     public function getConfigCacheDir()
     {
-        if ($this->configCacheDir) {
-            return $this->configCacheDir;
-        }
-
         $config = $this->getApplicationConfig();
-        if (isset($config['module_listener_options']['cache_dir'])) {
-            $this->configCacheDir = $config['module_listener_options']['cache_dir'];
+        if (! isset($config['module_listener_options']['cache_dir'])) {
+            return;
         }
 
-        return $this->configCacheDir;
+        return $config['module_listener_options']['cache_dir'];
     }
 
     /**
@@ -102,16 +88,12 @@ trait ConfigDiscoveryTrait
      */
     private function getConfigCacheKey()
     {
-        if ($this->configCacheKey) {
-            return $this->configCacheKey;
-        }
-
         $config = $this->getApplicationConfig();
-        if (isset($config['module_listener_options']['config_cache_key'])) {
-            $this->configCacheKey = $config['module_listener_options']['config_cache_key'];
+        if (! isset($config['module_listener_options']['config_cache_key'])) {
+            return;
         }
 
-        return $this->configCacheKey;
+        return $config['module_listener_options']['config_cache_key'];
     }
 
     /**
@@ -125,27 +107,27 @@ trait ConfigDiscoveryTrait
      */
     function getApplicationConfig()
     {
-        if ($this->applicationConfig) {
+        if (null !== $this->applicationConfig) {
             return $this->applicationConfig;
         }
 
-        $applicationConfig = (isset($this->projectDir) && ! empty($this->projectDir))
+        $configFile = isset($this->projectDir)
             ? sprintf('%s/%s', $this->projectDir, $this->applicationConfigPath)
             : $this->applicationConfigPath;
-        if (! file_exists($applicationConfig)) {
+        if (! file_exists($configFile)) {
             $this->applicationConfig = [];
             return $this->applicationConfig;
         }
 
-        $config = include $applicationConfig;
+        $this->applicationConfig = include $configFile;
 
-        if (! is_array($config)) {
+        if (! is_array($this->applicationConfig)) {
             throw new RuntimeException(
                 'Invalid configuration returned from config/application.config.php;' . PHP_EOL
                 . 'is this a zendframework application?' . PHP_EOL
             );
         }
 
-        return $config;
+        return $this->applicationConfig;
     }
 }

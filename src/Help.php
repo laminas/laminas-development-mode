@@ -9,6 +9,9 @@ namespace ZF\DevelopmentMode;
 
 class Help
 {
+    /**
+     * @var string
+     */
     private $message = <<< EOH
 Enable/Disable development mode.
 
