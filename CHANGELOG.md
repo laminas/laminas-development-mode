@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 3.0.0 - TBD
+## 3.0.0 - 2016-06-22
 
 ### Added
 
@@ -25,24 +25,6 @@ All notable changes to this project will be documented in this file, in reverse 
   ready for zend-mvc v3.
 - [#19](https://github.com/zfcampus/zf-development-mode/pull/19) removes
   support for PHP versions less than 5.6.
-
-### Fixed
-
-- Nothing.
-
-## 2.1.3 - TBD
-
-### Added
-
-- Nothing.
-
-### Deprecated
-
-- Nothing.
-
-### Removed
-
-- Nothing.
 
 ### Fixed
 
