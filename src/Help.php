@@ -52,7 +52,11 @@ EOH;
      */
     public function __invoke($stream = null)
     {
-        $stream = $stream ?: STDOUT;
+        if (! is_resource($stream)) {
+            echo $this->message;
+            return;
+        }
+
         fwrite($stream, $this->message);
     }
 }

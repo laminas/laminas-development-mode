@@ -11,7 +11,7 @@ namespace ZF\DevelopmentMode;
 // Setup/verify autoloading
 if (file_exists($a = dirname(__FILE__).'/../../../autoload.php') === true) {
     require $a;
-} else if (file_exists($a = dirname(__FILE__).'/../vendor/autoload.php') === true) {
+} elseif (file_exists($a = dirname(__FILE__).'/../vendor/autoload.php') === true) {
     require $a;
 } else {
     fwrite(STDERR, 'Cannot locate autoloader; please run "composer install"' . PHP_EOL);

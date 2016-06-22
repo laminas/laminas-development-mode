@@ -13,6 +13,28 @@ class Disable
 {
     use ConfigDiscoveryTrait;
 
+    const DEVEL_CONFIG = 'config/development.config.php';
+    const DEVEL_LOCAL  = 'config/autoload/development.local.php';
+
+    /**
+     * @var resource
+     */
+    private $errorStream;
+
+    /**
+     * @param string Path to project.
+     */
+    private $projectDir;
+
+    /**
+     * @param string $projectDir Location to resolve project from.
+     */
+    public function __construct($projectDir = '', $errorStream = null)
+    {
+        $this->projectDir = $projectDir;
+        $this->errorStream = is_resource($errorStream) ? $errorStream : STDERR;
+    }
+
     /**
      * Disable development mode.
      *
@@ -20,23 +42,29 @@ class Disable
      */
     public function __invoke()
     {
-        if (! file_exists('config/development.config.php')) {
+        $develConfig = $this->projectDir
+            ? sprintf('%s/%s', $this->projectDir, self::DEVEL_CONFIG)
+            : self::DEVEL_CONFIG;
+        if (! file_exists($develConfig)) {
             // nothing to do
             echo 'Development mode was already disabled.', PHP_EOL;
             return 0;
         }
 
-        if (file_exists('config/autoload/development.local.php')) {
+        $develLocalConfig = $this->projectDir
+            ? sprintf('%s/%s', $this->projectDir, self::DEVEL_LOCAL)
+            : self::DEVEL_LOCAL;
+        if (file_exists($develLocalConfig)) {
             // optional application config override
-            unlink('config/autoload/development.local.php');
+            unlink($develLocalConfig);
         }
 
-        unlink('config/development.config.php');
+        unlink($develConfig);
 
         try {
             $this->removeConfigCacheFile($this->getConfigCacheFile());
         } catch (RuntimeException $e) {
-            fwrite(STDERR, $e->getMessage());
+            fwrite($this->errorStream, $e->getMessage());
             return 1;
         }
 
