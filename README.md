@@ -5,6 +5,24 @@ mode for a zend-mvc application. The script allows you to specify configuration
 and modules that should only be enabled when in development, and not when in
 production.
 
+## Note to v2 users
+
+If you were using a v2 version of this package previously, invocation has
+changed. Previously, you would invoke it via the MVC CLI bootstrap:
+
+```bash
+$ php public/index.php development enable  # enable development mode
+$ php public/index.php development disable # disable development mode
+```
+
+v3 releases now install this as a vendor binary, with no dependencies on other
+components:
+
+```bash
+$ ./vendor/bin/zf-development-mode enable  # enable development mode
+$ ./vendor/bin/zf-development-mode disable # disable development mode
+```
+
 ## Installation
 
 Install this package using Composer:
