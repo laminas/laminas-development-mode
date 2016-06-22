@@ -28,7 +28,7 @@ class Disable
 
     /**
      * @param string $projectDir Location to resolve project from.
-     * @param null|resource Stream to which to write errors; defaults to STDERR
+     * @param null|resource $errorStream Stream to which to write errors; defaults to STDERR
      */
     public function __construct($projectDir = '', $errorStream = null)
     {
