@@ -105,7 +105,7 @@ trait ConfigDiscoveryTrait
      * @throws RuntimeException if config/application.config.php does not
      *     return an array
      */
-    function getApplicationConfig()
+    private function getApplicationConfig()
     {
         if (null !== $this->applicationConfig) {
             return $this->applicationConfig;
