@@ -51,15 +51,15 @@ trait ConfigDiscoveryTrait
     private function getConfigCacheFile()
     {
         $configCacheDir = $this->getConfigCacheDir();
-        $configCacheKey = $this->getConfigCacheKey();
 
-        if (empty($configCacheDir)) {
+        if (! $configCacheDir) {
             return false;
         }
 
         $path = sprintf('%s/%s.', $configCacheDir, $this->configCacheBase);
 
-        if (! empty($configCacheKey)) {
+        $configCacheKey = $this->getConfigCacheKey();
+        if ($configCacheKey) {
             $path .= $configCacheKey . '.';
         }
 
@@ -74,7 +74,7 @@ trait ConfigDiscoveryTrait
     private function getConfigCacheDir()
     {
         $config = $this->getApplicationConfig();
-        if (! isset($config['module_listener_options']['cache_dir'])) {
+        if (empty($config['module_listener_options']['cache_dir'])) {
             return null;
         }
 
@@ -89,7 +89,7 @@ trait ConfigDiscoveryTrait
     private function getConfigCacheKey()
     {
         $config = $this->getApplicationConfig();
-        if (! isset($config['module_listener_options']['config_cache_key'])) {
+        if (empty($config['module_listener_options']['config_cache_key'])) {
             return null;
         }
 
