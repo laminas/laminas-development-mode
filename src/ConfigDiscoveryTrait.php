@@ -71,7 +71,7 @@ trait ConfigDiscoveryTrait
      *
      * @return null|string
      */
-    public function getConfigCacheDir()
+    private function getConfigCacheDir()
     {
         $config = $this->getApplicationConfig();
         if (! isset($config['module_listener_options']['cache_dir'])) {
