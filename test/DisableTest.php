@@ -55,7 +55,7 @@ class DisableTest extends TestCase
             ->at($this->projectDir)
             ->setContent('');
         $command = $this->command;
-        $this->assertSame(1, $command(), 'Did not get expected return value from invoking enable');
+        $this->assertSame(1, $command(), 'Did not get expected return value from invoking disable');
         $this->assertFalse(
             file_exists(vfsStream::url('project') . '/config/development.config.php'),
             'Distribution development config was not removed'
@@ -81,7 +81,7 @@ class DisableTest extends TestCase
         $this->assertSame(
             0,
             $result,
-            'Did not get expected return value from invoking enable; errors: ' . $this->readErrorStream()
+            'Did not get expected return value from invoking disable; errors: ' . $this->readErrorStream()
         );
         $this->assertFalse(
             file_exists(vfsStream::url('project/config/development.config.php')),
@@ -100,7 +100,7 @@ class DisableTest extends TestCase
         $command = $this->command;
 
         $this->expectOutputString('Development mode is now disabled.' . PHP_EOL);
-        $this->assertSame(0, $command(), 'Did not get expected return value from invoking enable');
+        $this->assertSame(0, $command(), 'Did not get expected return value from invoking disable');
         $this->assertFalse(
             file_exists(vfsStream::url('project/config/development.config.php')),
             'Distribution development config was not removed'
@@ -118,7 +118,7 @@ class DisableTest extends TestCase
         $command = $this->command;
 
         $this->expectOutputString('Development mode is now disabled.' . PHP_EOL);
-        $this->assertSame(0, $command(), 'Did not get expected return value from invoking enable');
+        $this->assertSame(0, $command(), 'Did not get expected return value from invoking disable');
         $this->assertFalse(
             file_exists(vfsStream::url('project/config/development.config.php')),
             'Distribution development config was not removed'
