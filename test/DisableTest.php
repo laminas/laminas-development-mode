@@ -128,4 +128,17 @@ class DisableTest extends TestCase
             'Config cache file was not removed'
         );
     }
+
+    public function testDevelopmentModeDisabledWhenApplicationConfigNotFound()
+    {
+        file_put_contents(vfsStream::url('project/config/development.config.php'), $this->configStub);
+        $command = $this->command;
+
+        $this->expectOutputString('Development mode is now disabled.' . PHP_EOL);
+        $this->assertSame(0, $command(), 'Did not get expected return value from invoking disable');
+        $this->assertFalse(
+            file_exists(vfsStream::url('project/config/development.config.php')),
+            'Distribution development config was not removed'
+        );
+    }
 }

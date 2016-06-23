@@ -153,4 +153,19 @@ class EnableTest extends TestCase
             'Config cache file was not removed'
         );
     }
+
+    public function testDevelopmentModeEnabledWhenApplicationConfigNotFound()
+    {
+        vfsStream::newFile('config/development.config.php.dist')
+            ->at($this->projectDir)
+            ->setContent('<' . "?php\nreturn [];");
+        $command = $this->command;
+
+        $this->expectOutputString('You are now in development mode.' . PHP_EOL);
+        $this->assertSame(0, $command(), 'Did not get expected return value from invoking enable');
+        $this->assertTrue(
+            file_exists(vfsStream::url('project') . '/config/development.config.php'),
+            'Distribution development config was not copied to new file'
+        );
+    }
 }
