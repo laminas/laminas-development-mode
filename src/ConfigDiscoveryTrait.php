@@ -31,11 +31,11 @@ trait ConfigDiscoveryTrait
 
     /**
      * Removes the application configuration cache file, if present.
-     *
-     * @param string $configCacheFile
      */
-    private function removeConfigCacheFile($configCacheFile)
+    private function removeConfigCacheFile()
     {
+        $configCacheFile = $this->getConfigCacheFile();
+
         if (! $configCacheFile || ! file_exists($configCacheFile)) {
             return;
         }

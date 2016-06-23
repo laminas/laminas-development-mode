@@ -63,7 +63,7 @@ class Disable
         unlink($develConfig);
 
         try {
-            $this->removeConfigCacheFile($this->getConfigCacheFile());
+            $this->removeConfigCacheFile();
         } catch (RuntimeException $e) {
             fwrite($this->errorStream, $e->getMessage());
             return 1;
