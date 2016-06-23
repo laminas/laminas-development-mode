@@ -61,7 +61,7 @@ class DisableTest extends TestCase
         $this->assertSame(0, $command());
     }
 
-    public function testRaisesErrorMessageIfApplicationConfigDoesNotReturnAnArray()
+    public function testRaisesErrorMessageIfApplicationConfigDoesNotReturnAnArrayDevelopmentModeIsNotDisabled()
     {
         file_put_contents(vfsStream::url('project/config/development.config.php'), $this->configStub);
         vfsStream::newFile('config/application.config.php')
@@ -69,9 +69,9 @@ class DisableTest extends TestCase
             ->setContent('');
         $command = $this->command;
         $this->assertSame(1, $command(), 'Did not get expected return value from invoking disable');
-        $this->assertFalse(
+        $this->assertTrue(
             file_exists(vfsStream::url('project') . '/config/development.config.php'),
-            'Distribution development config was not removed'
+            'Distribution development config was removed'
         );
 
         fseek($this->errorStream, 0);

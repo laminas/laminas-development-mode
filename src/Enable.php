@@ -65,6 +65,13 @@ class Enable
             return 1;
         }
 
+        try {
+            $this->removeConfigCacheFile();
+        } catch (RuntimeException $ex) {
+            fwrite($this->errorStream, $ex->getMessage());
+            return 1;
+        }
+
         copy($develConfigDist, $develConfig);
 
         $develLocalDist = $this->projectDir
@@ -76,13 +83,6 @@ class Enable
                 ? sprintf('%s/%s', $this->projectDir, self::DEVEL_LOCAL)
                 : self::DEVEL_LOCAL;
             copy($develLocalDist, $develLocal);
-        }
-
-        try {
-            $this->removeConfigCacheFile();
-        } catch (RuntimeException $ex) {
-            fwrite($this->errorStream, $ex->getMessage());
-            return 1;
         }
 
         echo 'You are now in development mode.', PHP_EOL;

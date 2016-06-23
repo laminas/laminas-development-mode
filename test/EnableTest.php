@@ -71,7 +71,7 @@ class EnableTest extends TestCase
         );
     }
 
-    public function testRaisesErrorMessageIfApplicationConfigDoesNotReturnAnArray()
+    public function testRaisesErrorMessageIfApplicationConfigDoesNotReturnAnArrayDevelopmentModeIsNotEnabled()
     {
         vfsStream::newFile('config/development.config.php.dist')
             ->at($this->projectDir)
@@ -81,9 +81,9 @@ class EnableTest extends TestCase
             ->setContent('');
         $command = $this->command;
         $this->assertSame(1, $command(), 'Did not get expected return value from invoking enable');
-        $this->assertTrue(
+        $this->assertFalse(
             file_exists(vfsStream::url('project') . '/config/development.config.php'),
-            'Distribution development config was not copied to new file'
+            'Distribution development config was copied to new file'
         );
 
         fseek($this->errorStream, 0);
