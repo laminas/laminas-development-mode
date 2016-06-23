@@ -8,12 +8,22 @@
 namespace ZFTest\DevelopmentMode;
 
 use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamContainer;
 use PHPUnit_Framework_TestCase as TestCase;
 use ZF\DevelopmentMode\Enable;
 
 class EnableTest extends TestCase
 {
     use RemoveCacheFileTrait;
+
+    /** @var vfsStreamContainer */
+    private $projectDir;
+
+    /** @var resource */
+    private $errorStream;
+
+    /** @var Enable */
+    private $command;
 
     public function setUp()
     {

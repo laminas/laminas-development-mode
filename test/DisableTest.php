@@ -8,12 +8,25 @@
 namespace ZFTest\DevelopmentMode;
 
 use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamContainer;
 use PHPUnit_Framework_TestCase as TestCase;
 use ZF\DevelopmentMode\Disable;
 
 class DisableTest extends TestCase
 {
     use RemoveCacheFileTrait;
+
+    /** @var vfsStreamContainer */
+    private $projectDir;
+
+    /** @var resource */
+    private $errorStream;
+
+    /** @var string */
+    private $configStub;
+
+    /** @var Disable */
+    private $command;
 
     public function setUp()
     {
