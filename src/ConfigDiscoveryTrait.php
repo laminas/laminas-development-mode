@@ -75,7 +75,7 @@ trait ConfigDiscoveryTrait
     {
         $config = $this->getApplicationConfig();
         if (! isset($config['module_listener_options']['cache_dir'])) {
-            return;
+            return null;
         }
 
         return $config['module_listener_options']['cache_dir'];
@@ -90,7 +90,7 @@ trait ConfigDiscoveryTrait
     {
         $config = $this->getApplicationConfig();
         if (! isset($config['module_listener_options']['config_cache_key'])) {
-            return;
+            return null;
         }
 
         return $config['module_listener_options']['config_cache_key'];
