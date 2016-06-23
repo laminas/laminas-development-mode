@@ -64,8 +64,8 @@ class Disable
 
         try {
             $this->removeConfigCacheFile();
-        } catch (RuntimeException $e) {
-            fwrite($this->errorStream, $e->getMessage());
+        } catch (RuntimeException $ex) {
+            fwrite($this->errorStream, $ex->getMessage());
             return 1;
         }
 
