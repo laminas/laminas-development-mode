@@ -8,13 +8,25 @@
 namespace ZFTest\DevelopmentMode;
 
 use org\bovigo\vfs\vfsStream;
-use org\bovigo\vfs\vfsStreamDirectory;
+use org\bovigo\vfs\vfsStreamContainer;
 use PHPUnit_Framework_TestCase as TestCase;
 use ZF\DevelopmentMode\Disable;
 
 class DisableTest extends TestCase
 {
     use RemoveCacheFileTrait;
+
+    /** @var vfsStreamContainer */
+    private $projectDir;
+
+    /** @var resource */
+    private $errorStream;
+
+    /** @var string */
+    private $configStub;
+
+    /** @var Disable */
+    private $command;
 
     public function setUp()
     {
@@ -49,17 +61,17 @@ class DisableTest extends TestCase
         $this->assertSame(0, $command());
     }
 
-    public function testRaisesErrorMessageIfApplicationConfigDoesNotReturnAnArray()
+    public function testRaisesErrorMessageIfApplicationConfigDoesNotReturnAnArrayDevelopmentModeIsNotDisabled()
     {
         file_put_contents(vfsStream::url('project/config/development.config.php'), $this->configStub);
         vfsStream::newFile('config/application.config.php')
             ->at($this->projectDir)
             ->setContent('');
         $command = $this->command;
-        $this->assertSame(1, $command(), 'Did not get expected return value from invoking enable');
-        $this->assertFalse(
+        $this->assertSame(1, $command(), 'Did not get expected return value from invoking disable');
+        $this->assertTrue(
             file_exists(vfsStream::url('project') . '/config/development.config.php'),
-            'Distribution development config was not removed'
+            'Distribution development config was removed'
         );
 
         fseek($this->errorStream, 0);
@@ -82,7 +94,7 @@ class DisableTest extends TestCase
         $this->assertSame(
             0,
             $result,
-            'Did not get expected return value from invoking enable; errors: ' . $this->readErrorStream()
+            'Did not get expected return value from invoking disable; errors: ' . $this->readErrorStream()
         );
         $this->assertFalse(
             file_exists(vfsStream::url('project/config/development.config.php')),
@@ -101,7 +113,7 @@ class DisableTest extends TestCase
         $command = $this->command;
 
         $this->expectOutputString('Development mode is now disabled.' . PHP_EOL);
-        $this->assertSame(0, $command(), 'Did not get expected return value from invoking enable');
+        $this->assertSame(0, $command(), 'Did not get expected return value from invoking disable');
         $this->assertFalse(
             file_exists(vfsStream::url('project/config/development.config.php')),
             'Distribution development config was not removed'
@@ -119,7 +131,7 @@ class DisableTest extends TestCase
         $command = $this->command;
 
         $this->expectOutputString('Development mode is now disabled.' . PHP_EOL);
-        $this->assertSame(0, $command(), 'Did not get expected return value from invoking enable');
+        $this->assertSame(0, $command(), 'Did not get expected return value from invoking disable');
         $this->assertFalse(
             file_exists(vfsStream::url('project/config/development.config.php')),
             'Distribution development config was not removed'
@@ -127,6 +139,19 @@ class DisableTest extends TestCase
         $this->assertFalse(
             file_exists(vfsStream::url('project') . '/cache/module-config-cache.custom.php'),
             'Config cache file was not removed'
+        );
+    }
+
+    public function testDevelopmentModeDisabledWhenApplicationConfigNotFound()
+    {
+        file_put_contents(vfsStream::url('project/config/development.config.php'), $this->configStub);
+        $command = $this->command;
+
+        $this->expectOutputString('Development mode is now disabled.' . PHP_EOL);
+        $this->assertSame(0, $command(), 'Did not get expected return value from invoking disable');
+        $this->assertFalse(
+            file_exists(vfsStream::url('project/config/development.config.php')),
+            'Distribution development config was not removed'
         );
     }
 }

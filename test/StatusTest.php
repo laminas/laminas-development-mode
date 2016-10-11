@@ -8,12 +8,15 @@
 namespace ZFTest\DevelopmentMode;
 
 use org\bovigo\vfs\vfsStream;
-use org\bovigo\vfs\vfsStreamDirectory;
+use org\bovigo\vfs\vfsStreamContainer;
 use PHPUnit_Framework_TestCase as TestCase;
 use ZF\DevelopmentMode\Status;
 
 class StatusTest extends TestCase
 {
+    /** @var vfsStreamContainer */
+    private $projectDir;
+
     public function setUp()
     {
         $this->projectDir = vfsStream::setup('project');
