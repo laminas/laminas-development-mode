@@ -52,6 +52,13 @@ class Disable
             return 0;
         }
 
+        try {
+            $this->removeConfigCacheFile();
+        } catch (RuntimeException $ex) {
+            fwrite($this->errorStream, $ex->getMessage());
+            return 1;
+        }
+
         $develLocalConfig = $this->projectDir
             ? sprintf('%s/%s', $this->projectDir, self::DEVEL_LOCAL)
             : self::DEVEL_LOCAL;
@@ -61,13 +68,6 @@ class Disable
         }
 
         unlink($develConfig);
-
-        try {
-            $this->removeConfigCacheFile($this->getConfigCacheFile());
-        } catch (RuntimeException $e) {
-            fwrite($this->errorStream, $e->getMessage());
-            return 1;
-        }
 
         echo 'Development mode is now disabled.', PHP_EOL;
         return 0;

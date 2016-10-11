@@ -31,11 +31,11 @@ trait ConfigDiscoveryTrait
 
     /**
      * Removes the application configuration cache file, if present.
-     *
-     * @param string $configCacheFile
      */
-    private function removeConfigCacheFile($configCacheFile)
+    private function removeConfigCacheFile()
     {
+        $configCacheFile = $this->getConfigCacheFile();
+
         if (! $configCacheFile || ! file_exists($configCacheFile)) {
             return;
         }
@@ -51,15 +51,15 @@ trait ConfigDiscoveryTrait
     private function getConfigCacheFile()
     {
         $configCacheDir = $this->getConfigCacheDir();
-        $configCacheKey = $this->getConfigCacheKey();
 
-        if (empty($configCacheDir)) {
+        if (! $configCacheDir) {
             return false;
         }
 
         $path = sprintf('%s/%s.', $configCacheDir, $this->configCacheBase);
 
-        if (! empty($configCacheKey)) {
+        $configCacheKey = $this->getConfigCacheKey();
+        if ($configCacheKey) {
             $path .= $configCacheKey . '.';
         }
 
@@ -71,11 +71,11 @@ trait ConfigDiscoveryTrait
      *
      * @return null|string
      */
-    public function getConfigCacheDir()
+    private function getConfigCacheDir()
     {
         $config = $this->getApplicationConfig();
-        if (! isset($config['module_listener_options']['cache_dir'])) {
-            return;
+        if (empty($config['module_listener_options']['cache_dir'])) {
+            return null;
         }
 
         return $config['module_listener_options']['cache_dir'];
@@ -89,8 +89,8 @@ trait ConfigDiscoveryTrait
     private function getConfigCacheKey()
     {
         $config = $this->getApplicationConfig();
-        if (! isset($config['module_listener_options']['config_cache_key'])) {
-            return;
+        if (empty($config['module_listener_options']['config_cache_key'])) {
+            return null;
         }
 
         return $config['module_listener_options']['config_cache_key'];
@@ -105,7 +105,7 @@ trait ConfigDiscoveryTrait
      * @throws RuntimeException if config/application.config.php does not
      *     return an array
      */
-    function getApplicationConfig()
+    private function getApplicationConfig()
     {
         if (null !== $this->applicationConfig) {
             return $this->applicationConfig;
