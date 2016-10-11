@@ -7,8 +7,6 @@
 
 namespace ZF\DevelopmentMode;
 
-use RuntimeException;
-
 class Status
 {
     const DEVEL_CONFIG = 'config/development.config.php';

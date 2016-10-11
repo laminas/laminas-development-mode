@@ -8,13 +8,22 @@
 namespace ZFTest\DevelopmentMode;
 
 use org\bovigo\vfs\vfsStream;
-use org\bovigo\vfs\vfsStreamDirectory;
+use org\bovigo\vfs\vfsStreamContainer;
 use PHPUnit_Framework_TestCase as TestCase;
 use ZF\DevelopmentMode\Enable;
 
 class EnableTest extends TestCase
 {
     use RemoveCacheFileTrait;
+
+    /** @var vfsStreamContainer */
+    private $projectDir;
+
+    /** @var resource */
+    private $errorStream;
+
+    /** @var Enable */
+    private $command;
 
     public function setUp()
     {
@@ -62,7 +71,7 @@ class EnableTest extends TestCase
         );
     }
 
-    public function testRaisesErrorMessageIfApplicationConfigDoesNotReturnAnArray()
+    public function testRaisesErrorMessageIfApplicationConfigDoesNotReturnAnArrayDevelopmentModeIsNotEnabled()
     {
         vfsStream::newFile('config/development.config.php.dist')
             ->at($this->projectDir)
@@ -72,9 +81,9 @@ class EnableTest extends TestCase
             ->setContent('');
         $command = $this->command;
         $this->assertSame(1, $command(), 'Did not get expected return value from invoking enable');
-        $this->assertTrue(
+        $this->assertFalse(
             file_exists(vfsStream::url('project') . '/config/development.config.php'),
-            'Distribution development config was not copied to new file'
+            'Distribution development config was copied to new file'
         );
 
         fseek($this->errorStream, 0);
@@ -152,6 +161,21 @@ class EnableTest extends TestCase
         $this->assertFalse(
             file_exists(vfsStream::url('project') . '/cache/module-config-cache.custom.php'),
             'Config cache file was not removed'
+        );
+    }
+
+    public function testDevelopmentModeEnabledWhenApplicationConfigNotFound()
+    {
+        vfsStream::newFile('config/development.config.php.dist')
+            ->at($this->projectDir)
+            ->setContent('<' . "?php\nreturn [];");
+        $command = $this->command;
+
+        $this->expectOutputString('You are now in development mode.' . PHP_EOL);
+        $this->assertSame(0, $command(), 'Did not get expected return value from invoking enable');
+        $this->assertTrue(
+            file_exists(vfsStream::url('project') . '/config/development.config.php'),
+            'Distribution development config was not copied to new file'
         );
     }
 }
