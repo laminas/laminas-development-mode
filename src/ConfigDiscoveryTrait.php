@@ -25,6 +25,11 @@ trait ConfigDiscoveryTrait
     private $applicationConfigPath = 'config/application.config.php';
 
     /**
+     * @var string
+     */
+    private $expressiveConfigPath = 'config/config.php';
+
+    /**
      * @var string Base name for configuration cache.
      */
     private $configCacheBase = 'module-config-cache';
@@ -50,6 +55,12 @@ trait ConfigDiscoveryTrait
      */
     private function getConfigCacheFile()
     {
+        $config = $this->getApplicationConfig();
+
+        if (isset($config['config_cache_path'])) {
+            return $config['config_cache_path'];
+        }
+
         $configCacheDir = $this->getConfigCacheDir();
 
         if (! $configCacheDir) {
@@ -114,6 +125,11 @@ trait ConfigDiscoveryTrait
         $configFile = isset($this->projectDir)
             ? sprintf('%s/%s', $this->projectDir, $this->applicationConfigPath)
             : $this->applicationConfigPath;
+
+        if (! file_exists($configFile)) {
+            $configFile = $this->expressiveConfigPath;
+        }
+
         if (! file_exists($configFile)) {
             $this->applicationConfig = [];
             return $this->applicationConfig;
@@ -123,8 +139,8 @@ trait ConfigDiscoveryTrait
 
         if (! is_array($this->applicationConfig)) {
             throw new RuntimeException(
-                'Invalid configuration returned from config/application.config.php;' . PHP_EOL
-                . 'is this a zendframework application?' . PHP_EOL
+                'Invalid configuration returned from config/application.config.php or config/config.php;' . PHP_EOL
+                . 'is this a Zend Framework or Zend Expressive application?' . PHP_EOL
             );
         }
 
