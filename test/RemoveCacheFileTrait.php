@@ -43,4 +43,18 @@ EOC;
         file_put_contents(vfsStream::url('project/config/application.config.php'), $config);
         file_put_contents(vfsStream::url('project/cache/module-config-cache.custom.php'), '<' . "?php\nreturn [];");
     }
+
+    public function setUpDefaultExpressiveCacheFile()
+    {
+        $cache = vfsStream::url('project/data/config-cache.php');
+        $config = <<< EOC
+<?php
+return [
+    'config_cache_path' => '{$cache}',
+];
+EOC;
+
+        file_put_contents(vfsStream::url('project/config/application.config.php'), $config);
+        file_put_contents($cache, '<' . "?php\nreturn [];");
+    }
 }

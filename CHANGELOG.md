@@ -2,11 +2,12 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 3.1.0 - TBD
+## 3.1.0 - 2017-01-09
 
 ### Added
 
-- Nothing.
+- [#23](https://github.com/zfcampus/zf-development-mode/pull/23) adds support
+  for [Expressive](https://docs.zendframework.com/zend-expressive) applications.
 
 ### Deprecated
 
