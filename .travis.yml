@@ -15,10 +15,11 @@ matrix:
     - php: 7
       env:
         - CS_CHECK=true
-    - php: hhvm 
+    - php: 7.1
+    - php: hhvm
   allow_failures:
     - php: hhvm
-  
+
 notifications:
   irc: "irc.freenode.org#apigility-dev"
   email: false
