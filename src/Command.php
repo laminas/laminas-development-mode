@@ -42,6 +42,20 @@ class Command
             case 'status':
                 $status = new Status();
                 return $status();
+            case 'auto_composer':
+                $composer_dev_mode = getenv("COMPOSER_DEV_MODE");
+                if ($composer_dev_mode != "") {
+                    if ($composer_dev_mode == "0") {
+                        $disable = new Disable();
+                        return $disable();
+                    } else {
+                        $enable = new Enable();
+                        return $enable();
+                    }
+                }
+                // not running under composer
+                fwrite(STDOUT, 'COMPOSER_DEV_MODE not set. Nothing to do.' . PHP_EOL);
+                return 0;
             default:
                 fwrite(STDERR, 'Unrecognized argument.' . PHP_EOL . PHP_EOL);
                 $help(STDERR);
