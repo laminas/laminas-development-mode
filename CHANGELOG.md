@@ -2,9 +2,11 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 3.2.0 - TBD
+## 3.2.0 - 2018-05-07
 
 ### Added
+
+- [#35](https://github.com/zfcampus/zf-development-mode/pull/35) adds support for PHP 7.2.
 
 - [#32](https://github.com/zfcampus/zf-development-mode/pull/32) adds a new sub-command, `auto-composer`. When invoked, it uses the value of
   the environment variable COMPOSER_DEV_MODE to determine whether to enable or disable development
@@ -32,7 +34,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- Nothing.
+- [#35](https://github.com/zfcampus/zf-development-mode/pull/35) removes support for HHVM.
 
 ### Fixed
 
@@ -88,6 +90,10 @@ All notable changes to this project will be documented in this file, in reverse 
 ## 2.1.2 - 2015-12-21
 
 ### Added
+
+- [#35](https://github.com/zfcampus/zf-development-mode/pull/35) adds support for PHP 7.2.
+
+### Changed
 
 - Nothing.
 
