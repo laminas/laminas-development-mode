@@ -32,7 +32,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- Nothing.
+- [#35](https://github.com/zfcampus/zf-development-mode/pull/35) removes support for HHVM.
 
 ### Fixed
 
@@ -88,6 +88,10 @@ All notable changes to this project will be documented in this file, in reverse 
 ## 2.1.2 - 2015-12-21
 
 ### Added
+
+- [#35](https://github.com/zfcampus/zf-development-mode/pull/35) adds support for PHP 7.2.
+
+### Changed
 
 - Nothing.
 
