@@ -9,7 +9,7 @@ namespace ZFTest\DevelopmentMode;
 
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamContainer;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use ZF\DevelopmentMode\AutoComposer;
 
 class AutoComposerTest extends TestCase
