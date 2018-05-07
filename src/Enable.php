@@ -90,11 +90,18 @@ class Enable
     }
 
     /**
-     * Returns whether the OS support symlinks well enough.
+     * Returns whether the OS support symlinks reliably.
+     *
+     * This approach uses a pre-configured whitelist of PHP_OS values that
+     * typically support symlinks reliably. This may omit some systems that
+     * also support symlinks properly; if you find this to be the case, please
+     * send a pull request with the PHP_OS value for us to match.
+     *
+     * This method is marked protected so that we can mock it.
      *
      * @return bool
      */
-    protected function supportSymlinks()
+    protected function supportsSymlinks()
     {
         return in_array(PHP_OS, ['Linux', 'Unix', 'Darwin']);
     }
@@ -104,13 +111,15 @@ class Enable
      *
      * @param string $source
      * @param string $destination
+     * @return void
      */
     private function copy($source, $destination)
     {
-        if ($this->supportSymlinks()) {
+        if ($this->supportsSymlinks()) {
             symlink(basename($source), $destination);
-        } else {
-            copy($source, $destination);
+            return;
         }
+
+        copy($source, $destination);
     }
 }
