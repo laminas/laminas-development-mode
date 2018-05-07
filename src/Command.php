@@ -42,8 +42,8 @@ class Command
             case 'status':
                 $status = new Status();
                 return $status();
-            case 'auto_composer':
-                $auto = new Auto();
+            case 'auto-composer':
+                $auto = new AutoComposer();
                 return $auto();
             default:
                 fwrite(STDERR, 'Unrecognized argument.' . PHP_EOL . PHP_EOL);
