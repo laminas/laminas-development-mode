@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
+- [#35](https://github.com/zfcampus/zf-development-mode/pull/35) adds support for PHP 7.2.
+
 - [#32](https://github.com/zfcampus/zf-development-mode/pull/32) adds a new sub-command, `auto-composer`. When invoked, it uses the value of
   the environment variable COMPOSER_DEV_MODE to determine whether to enable or disable development
   mode locally. If the variable is not present, it does nothing; if `0`, it disables development
