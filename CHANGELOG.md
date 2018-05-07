@@ -8,21 +8,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-### Deprecated
-
-- Nothing.
-
-### Removed
-
-- Nothing.
-
-### Fixed
-
-- Nothing.
-
-## 3.1.1 - TBD
-
-### Added
+### Changed
 
 - Nothing.
 
