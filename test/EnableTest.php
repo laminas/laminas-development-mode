@@ -9,7 +9,7 @@ namespace ZFTest\DevelopmentMode;
 
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamContainer;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use ZF\DevelopmentMode\Enable;
 
 class EnableTest extends TestCase
@@ -25,7 +25,7 @@ class EnableTest extends TestCase
     /** @var Enable */
     private $command;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->projectDir = vfsStream::setup('project', null, [
             'config' => [
@@ -42,7 +42,7 @@ class EnableTest extends TestCase
         $this->command->method('supportsSymlinks')->willReturn(false);
     }
 
-    public function tearDown()
+    protected function tearDown()
     {
         if (is_resource($this->errorStream)) {
             fclose($this->errorStream);

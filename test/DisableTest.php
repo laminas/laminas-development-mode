@@ -9,7 +9,7 @@ namespace ZFTest\DevelopmentMode;
 
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamContainer;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use ZF\DevelopmentMode\Disable;
 
 class DisableTest extends TestCase
@@ -28,7 +28,7 @@ class DisableTest extends TestCase
     /** @var Disable */
     private $command;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->projectDir = vfsStream::setup('project', null, [
             'config' => [
@@ -41,7 +41,7 @@ class DisableTest extends TestCase
         $this->command = new Disable(vfsStream::url('project'), $this->errorStream);
     }
 
-    public function tearDown()
+    protected function tearDown()
     {
         if (is_resource($this->errorStream)) {
             fclose($this->errorStream);
