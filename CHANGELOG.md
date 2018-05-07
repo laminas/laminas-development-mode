@@ -2,11 +2,31 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 3.1.1 - TBD
+## 3.2.0 - 2018-05-07
 
 ### Added
 
-- Nothing.
+- [#35](https://github.com/zfcampus/zf-development-mode/pull/35) adds support for PHP 7.2.
+
+- [#32](https://github.com/zfcampus/zf-development-mode/pull/32) adds a new sub-command, `auto-composer`. When invoked, it uses the value of
+  the environment variable COMPOSER_DEV_MODE to determine whether to enable or disable development
+  mode locally. If the variable is not present, it does nothing; if `0`, it disables development
+  mode, and if `1`, it enables development mode. This can be particularly useful as a composer script:
+
+  ```json
+  "scripts": {
+    "development-auto": "zf-development-mode auto-composer",
+    "post-install-cmd": ["@development-auto"],
+    "post-update-cmd": ["@development-auto"]
+  }
+  ```
+
+### Changed
+
+- [#29](https://github.com/zfcampus/zf-development-mode/pull/29) modifies how the `enable` subcommand copies development config files into
+  the filesystem. On operating systems that are known to support `symlink()` predictably,
+  the command will now create symlinks instead of copies. These include most Linux, BSD,
+  and MacOS variants.
 
 ### Deprecated
 
@@ -14,7 +34,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- Nothing.
+- [#35](https://github.com/zfcampus/zf-development-mode/pull/35) removes support for HHVM.
 
 ### Fixed
 
@@ -70,6 +90,10 @@ All notable changes to this project will be documented in this file, in reverse 
 ## 2.1.2 - 2015-12-21
 
 ### Added
+
+- [#35](https://github.com/zfcampus/zf-development-mode/pull/35) adds support for PHP 7.2.
+
+### Changed
 
 - Nothing.
 

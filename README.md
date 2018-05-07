@@ -1,6 +1,6 @@
 # zf-development-mode
 
-[![Build Status](https://travis-ci.org/zfcampus/zf-development-mode.svg?branch=master)](https://travis-ci.org/zfcampus/zf-development-mode)
+[![Build Status](https://secure.travis-ci.org/zfcampus/zf-development-mode.svg?branch=master)](https://secure.travis-ci.org/zfcampus/zf-development-mode)
 [![Coverage Status](https://coveralls.io/repos/github/zfcampus/zf-development-mode/badge.svg?branch=master)](https://coveralls.io/github/zfcampus/zf-development-mode?branch=master)
 [![Total Downloads](https://poser.pugx.org/zfcampus/zf-development-mode/downloads)](https://packagist.org/packages/zfcampus/zf-development-mode)
 
