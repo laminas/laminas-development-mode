@@ -10,7 +10,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Changed
 
-- Nothing.
+- [#29](https://github.com/zfcampus/zf-development-mode/pull/29) modifies how the `enable` subcommand copies development config files into
+  the filesystem. On operating systems that are known to support `symlink()` predictably,
+  the command will now create symlinks instead of copies. These include most Linux, BSD,
+  and MacOS variants.
 
 ### Deprecated
 
