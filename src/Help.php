@@ -25,6 +25,11 @@ enable                       Enable development mode
                              (do not use in production).
 status                       Determine if development mode is currently
                              enabled.
+auto-composer                Enable or disable development mode based on
+                             the environment variable COMPOSER_DEV_MODE.
+                             If the variable is not found, the mode is
+                             untouched. If set to something other than "0",
+                             it's enabled.
 
 To enable development mode, the following file MUST exist:
 

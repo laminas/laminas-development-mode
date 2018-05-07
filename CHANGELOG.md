@@ -6,7 +6,18 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#32](https://github.com/zfcampus/zf-development-mode/pull/32) adds a new sub-command, `auto-composer`. When invoked, it uses the value of
+  the environment variable COMPOSER_DEV_MODE to determine whether to enable or disable development
+  mode locally. If the variable is not present, it does nothing; if `0`, it disables development
+  mode, and if `1`, it enables development mode. This can be particularly useful as a composer script:
+
+  ```json
+  "scripts": {
+    "development-auto": "zf-development-mode auto-composer",
+    "post-install-cmd": ["@development-auto"],
+    "post-update-cmd": ["@development-auto"]
+  }
+  ```
 
 ### Changed
 
