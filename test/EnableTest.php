@@ -35,7 +35,11 @@ class EnableTest extends TestCase
             'data' => [],
         ]);
         $this->errorStream = fopen('php://memory', 'w+');
-        $this->command = new Enable(vfsStream::url('project'), $this->errorStream);
+        $this->command = $this->getMockBuilder(Enable::class)
+            ->setConstructorArgs([vfsStream::url('project'), $this->errorStream])
+            ->setMethods(['supportsSymlinks'])
+            ->getMock();
+        $this->command->method('supportsSymlinks')->willReturn(false);
     }
 
     public function tearDown()

@@ -72,7 +72,7 @@ class Enable
             return 1;
         }
 
-        copy($develConfigDist, $develConfig);
+        $this->copy($develConfigDist, $develConfig);
 
         $develLocalDist = $this->projectDir
             ? sprintf('%s/%s', $this->projectDir, self::DEVEL_LOCAL_DIST)
@@ -82,10 +82,44 @@ class Enable
             $develLocal = $this->projectDir
                 ? sprintf('%s/%s', $this->projectDir, self::DEVEL_LOCAL)
                 : self::DEVEL_LOCAL;
-            copy($develLocalDist, $develLocal);
+            $this->copy($develLocalDist, $develLocal);
         }
 
         echo 'You are now in development mode.', PHP_EOL;
         return 0;
+    }
+
+    /**
+     * Returns whether the OS support symlinks reliably.
+     *
+     * This approach uses a pre-configured whitelist of PHP_OS values that
+     * typically support symlinks reliably. This may omit some systems that
+     * also support symlinks properly; if you find this to be the case, please
+     * send a pull request with the PHP_OS value for us to match.
+     *
+     * This method is marked protected so that we can mock it.
+     *
+     * @return bool
+     */
+    protected function supportsSymlinks()
+    {
+        return in_array(PHP_OS, ['Linux', 'Unix', 'Darwin']);
+    }
+
+    /**
+     * Copy, or symlink, the source to the destination.
+     *
+     * @param string $source
+     * @param string $destination
+     * @return void
+     */
+    private function copy($source, $destination)
+    {
+        if ($this->supportsSymlinks()) {
+            symlink(basename($source), $destination);
+            return;
+        }
+
+        copy($source, $destination);
     }
 }
