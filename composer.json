@@ -1,36 +1,19 @@
 {
-    "name": "zfcampus/zf-development-mode",
-    "description": "Zend Framework development mode script",
+    "name": "laminas/laminas-development-mode",
+    "description": "Laminas development mode script",
     "license": "BSD-3-Clause",
     "keywords": [
-        "zf",
-        "zendframework",
+        "laminas",
         "framework"
     ],
+    "homepage": "https://laminas.dev",
     "support": {
-        "issues": "https://github.com/zfcampus/zf-development-mode/issues",
-        "source": "https://github.com/zfcampus/zf-development-mode",
-        "rss": "https://github.com/zfcampus/zf-development-mode/releases.atom",
-        "chat": "https://zendframework-slack.herokuapp.com",
-        "forum": "https://discourse.zendframework.com/c/questions/apigility"
-    },
-    "require": {
-        "php": "^5.6 || ^7.0"
-    },
-    "require-dev": {
-        "mikey179/vfsStream": "^1.6.5",
-        "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.5",
-        "zendframework/zend-coding-standard": "~1.0.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "ZF\\DevelopmentMode\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "ZFTest\\DevelopmentMode\\": "test/"
-        }
+        "docs": "https://docs.laminas.dev/laminas-development-mode/",
+        "issues": "https://github.com/laminas/laminas-development-mode/issues",
+        "source": "https://github.com/laminas/laminas-development-mode",
+        "rss": "https://github.com/laminas/laminas-development-mode/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
     },
     "config": {
         "sort-packages": true
@@ -41,8 +24,27 @@
             "dev-develop": "3.3.x-dev"
         }
     },
+    "require": {
+        "php": "^5.6 || ^7.0",
+        "laminas/laminas-zendframework-bridge": "^1.0"
+    },
+    "require-dev": {
+        "laminas/laminas-coding-standard": "~1.0.0",
+        "mikey179/vfsstream": "^1.6.5",
+        "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laminas\\DevelopmentMode\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LaminasTest\\DevelopmentMode\\": "test/"
+        }
+    },
     "bin": [
-        "bin/zf-development-mode"
+        "bin/laminas-development-mode"
     ],
     "scripts": {
         "check": [
@@ -53,5 +55,8 @@
         "cs-fix": "phpcbf",
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+    },
+    "replace": {
+        "zfcampus/zf-development-mode": "self.version"
     }
 }
