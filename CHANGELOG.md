@@ -18,6 +18,6 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#13](https://github.com/zfcampus/zf-development-mode/pull/13) ensures that
+- [zfcampus/zf-development-mode#13](https://github.com/zfcampus/zf-development-mode/pull/13) ensures that
   the application configuration cache file is always removed when switching
   to and from development mode.
