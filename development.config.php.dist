@@ -3,8 +3,8 @@
 return array(
     // Development time modules
     'modules' => array(
-        'ZFTool',
-        'ZendDeveloperTools',
+        'LaminasTool',
+        'LaminasDeveloperTools',
     ),
 
     'module_listener_options' => array(
