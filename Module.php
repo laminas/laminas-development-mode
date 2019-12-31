@@ -1,12 +1,14 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2013 Rob Allen (http://19ft.com)
+ * @see       https://github.com/laminas/laminas-development-mode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-development-mode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-development-mode/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\DevelopmentMode;
+namespace Laminas\DevelopmentMode;
 
-use Zend\Console\Adapter\AdapterInterface as Console;
+use Laminas\Console\Adapter\AdapterInterface as Console;
 
 class Module
 {
@@ -15,8 +17,8 @@ class Module
         return array(
             'controllers' => array(
                 'factories' => array(
-                    'ZF\DevelopmentMode\DevelopmentModeController' =>
-                        'ZF\DevelopmentMode\DevelopmentModeControllerFactory',
+                    'Laminas\DevelopmentMode\DevelopmentModeController' =>
+                        'Laminas\DevelopmentMode\DevelopmentModeControllerFactory',
                 ),
             ),
             'console' => array(
@@ -26,7 +28,7 @@ class Module
                             'options' => array(
                                 'route' => 'development disable',
                                 'defaults' => array(
-                                    'controller' => 'ZF\DevelopmentMode\DevelopmentModeController',
+                                    'controller' => 'Laminas\DevelopmentMode\DevelopmentModeController',
                                     'action'     => 'disable',
                                 ),
                             ),
@@ -35,7 +37,7 @@ class Module
                             'options' => array(
                                 'route' => 'development enable',
                                 'defaults' => array(
-                                    'controller' => 'ZF\DevelopmentMode\DevelopmentModeController',
+                                    'controller' => 'Laminas\DevelopmentMode\DevelopmentModeController',
                                     'action'     => 'enable',
                                 ),
                             ),
