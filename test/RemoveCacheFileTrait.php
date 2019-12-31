@@ -1,11 +1,12 @@
 <?php
+
 /**
- * @link      http://github.com/zfcampus/zf-development-mode for the canonical source repository
- * @copyright Copyright (c) 2014-2016 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-development-mode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-development-mode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-development-mode/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZFTest\DevelopmentMode;
+namespace LaminasTest\DevelopmentMode;
 
 use org\bovigo\vfs\vfsStream;
 
@@ -44,7 +45,7 @@ EOC;
         file_put_contents(vfsStream::url('project/cache/module-config-cache.custom.php'), '<' . "?php\nreturn [];");
     }
 
-    public function setUpDefaultExpressiveCacheFile()
+    public function setUpDefaultMezzioCacheFile()
     {
         $cache = vfsStream::url('project/data/config-cache.php');
         $config = <<< EOC

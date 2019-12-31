@@ -1,16 +1,17 @@
 <?php
+
 /**
- * @link      http://github.com/zfcampus/zf-development-mode for the canonical source repository
- * @copyright Copyright (c) 2014-2016 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-development-mode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-development-mode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-development-mode/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZFTest\DevelopmentMode;
+namespace LaminasTest\DevelopmentMode;
 
+use Laminas\DevelopmentMode\Enable;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamContainer;
 use PHPUnit\Framework\TestCase;
-use ZF\DevelopmentMode\Enable;
 
 class EnableTest extends TestCase
 {
@@ -184,12 +185,12 @@ class EnableTest extends TestCase
         );
     }
 
-    public function testRemovesDefaultExpressiveConfigCacheFileIfPresent()
+    public function testRemovesDefaultMezzioConfigCacheFileIfPresent()
     {
         vfsStream::newFile('config/development.config.php.dist')
             ->at($this->projectDir)
             ->setContent('<' . "?php\nreturn [];");
-        $this->setUpDefaultExpressiveCacheFile();
+        $this->setUpDefaultMezzioCacheFile();
         $command = $this->command;
 
         $this->expectOutputString('You are now in development mode.' . PHP_EOL);

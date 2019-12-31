@@ -1,11 +1,12 @@
 <?php
+
 /**
- * @see       https://github.com/zfcampus/zf-development-mode for the canonical source repository
- * @copyright Copyright (c) 2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zfcampus/zf-development-mode/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-development-mode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-development-mode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-development-mode/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\DevelopmentMode;
+namespace Laminas\DevelopmentMode;
 
 /**
  * Automatically switch to and from development mode based on type of composer

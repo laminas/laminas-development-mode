@@ -1,11 +1,12 @@
 <?php
+
 /**
- * @link      http://github.com/zfcampus/zf-development-mode for the canonical source repository
- * @copyright Copyright (c) 2014-2016 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-development-mode for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-development-mode/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-development-mode/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\DevelopmentMode;
+namespace Laminas\DevelopmentMode;
 
 use RuntimeException;
 
@@ -27,7 +28,7 @@ trait ConfigDiscoveryTrait
     /**
      * @var string
      */
-    private $expressiveConfigPath = 'config/config.php';
+    private $mezzioConfigPath = 'config/config.php';
 
     /**
      * @var string Base name for configuration cache.
@@ -126,7 +127,7 @@ trait ConfigDiscoveryTrait
             ? sprintf('%s/%s', $this->projectDir, $this->applicationConfigPath)
             : $this->applicationConfigPath;
 
-        $configFile = file_exists($configFile) ? $configFile : $this->expressiveConfigPath;
+        $configFile = file_exists($configFile) ? $configFile : $this->mezzioConfigPath;
 
         if (! file_exists($configFile)) {
             $this->applicationConfig = [];
@@ -138,7 +139,7 @@ trait ConfigDiscoveryTrait
         if (! is_array($this->applicationConfig)) {
             throw new RuntimeException(
                 'Invalid configuration returned from config/application.config.php or config/config.php;' . PHP_EOL
-                . 'is this a Zend Framework or Zend Expressive application?' . PHP_EOL
+                . 'is this a Laminas or Laminas Mezzio application?' . PHP_EOL
             );
         }
 
