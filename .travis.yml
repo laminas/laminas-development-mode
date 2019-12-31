@@ -1,5 +1,3 @@
-sudo: false
-
 language: php
 
 cache:
@@ -20,7 +18,6 @@ matrix:
     - php: hhvm
   
 notifications:
-  irc: "irc.freenode.org#apigility-dev"
   email: false
 
 before_install:

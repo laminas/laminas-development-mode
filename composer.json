@@ -1,40 +1,51 @@
 {
-    "name": "zfcampus/zf-development-mode",
-    "description": "Zend Framework development mode script",
-    "keywords": [
-        "framework",
-        "zf2"
-    ],
-    "homepage": "http://github.com/zfcampus/zf-development-mode",
-    "type": "library",
+    "name": "laminas/laminas-development-mode",
+    "description": "Laminas development mode script",
     "license": "BSD-3-Clause",
+    "keywords": [
+        "laminas",
+        "framework"
+    ],
+    "homepage": "https://laminas.dev",
+    "support": {
+        "docs": "https://docs.laminas.dev/laminas-development-mode/",
+        "issues": "https://github.com/laminas/laminas-development-mode/issues",
+        "source": "https://github.com/laminas/laminas-development-mode",
+        "rss": "https://github.com/laminas/laminas-development-mode/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
+    },
+    "config": {
+        "sort-packages": true
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "3.0-dev",
             "dev-develop": "3.1-dev"
         }
     },
-    "bin": [
-        "bin/zf-development-mode"
-    ],
     "require": {
-        "php": "^5.6 || ^7.0"
+        "php": "^5.6 || ^7.0",
+        "laminas/laminas-zendframework-bridge": "^1.0"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "^2.3.1",
+        "mikey179/vfsstream": "^1.6",
         "phpunit/phpunit": "^5.4",
-        "mikey179/vfsStream": "^1.6"
+        "squizlabs/php_codesniffer": "^2.3.1"
     },
     "autoload": {
         "psr-4": {
-            "ZF\\DevelopmentMode\\": "src/"
+            "Laminas\\DevelopmentMode\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ZFTest\\DevelopmentMode\\": "test/"
+            "LaminasTest\\DevelopmentMode\\": "test/"
         }
     },
+    "bin": [
+        "bin/laminas-development-mode"
+    ],
     "scripts": {
         "check": [
             "@cs",
@@ -45,5 +56,8 @@
         "cs-fix": "phpcbf",
         "test": "phpunit",
         "test-coverage": "phpunit --coverage-clover clover.xml"
+    },
+    "replace": {
+        "zfcampus/zf-development-mode": "self.version"
     }
 }
