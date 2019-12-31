@@ -1,30 +1,22 @@
 {
-    "name": "zfcampus/zf-development-mode",
-    "description": "ZF2 development mode module",
-    "keywords": [
-        "framework", "zf2"
-    ],
-    "homepage": "http://github.com/zfcampus/zf-development-mode",
-    "type": "library",
+    "name": "laminas/laminas-development-mode",
+    "description": "Laminas development mode module",
     "license": "BSD-3-Clause",
-    "authors": [
-        {
-            "name": "Ralph Schindler",
-            "email": "ralph.s@zend.com",
-            "homepage": "http://framework.zend.com"
-        },
-        {
-            "name": "Rob Allen",
-            "email": "rob@19ft.com",
-            "homepage": "http://19ft.com"
-        }
+    "keywords": [
+        "laminas",
+        "framework"
     ],
-    "autoload": {
-        "classmap": [
-            "./Module.php",
-            "./DevelopmentModeController.php",
-            "./DevelopmentModeControllerFactory.php"
-        ]
+    "homepage": "https://laminas.dev",
+    "support": {
+        "docs": "https://docs.laminas.dev/laminas-development-mode/",
+        "issues": "https://github.com/laminas/laminas-development-mode/issues",
+        "source": "https://github.com/laminas/laminas-development-mode",
+        "rss": "https://github.com/laminas/laminas-development-mode/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
+    },
+    "config": {
+        "sort-packages": true
     },
     "extra": {
         "branch-alias": {
@@ -34,14 +26,25 @@
     },
     "require": {
         "php": ">=5.3.23",
-        "zendframework/zend-console": ">=2.2.2,<2.5",
-        "zendframework/zend-mvc": ">=2.2.2,<2.5"
+        "laminas/laminas-console": ">=2.2.2,<2.5",
+        "laminas/laminas-mvc": ">=2.2.2,<2.5",
+        "laminas/laminas-zendframework-bridge": "^1.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "~2.3"
     },
     "suggest": {
-        "zendframework/zend-developer-tools": "dev-master",
-        "zendframework/zend-tool": "dev-master"
+        "laminas/laminas-developer-tools": "dev-master",
+        "laminas/laminas-tool": "dev-master"
+    },
+    "autoload": {
+        "classmap": [
+            "./Module.php",
+            "./DevelopmentModeController.php",
+            "./DevelopmentModeControllerFactory.php"
+        ]
+    },
+    "replace": {
+        "zfcampus/zf-development-mode": "self.version"
     }
 }
