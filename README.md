@@ -1,6 +1,6 @@
 # laminas-development-mode
 
-[![Build Status](https://travis-ci.org/laminas/laminas-development-mode.svg?branch=master)](https://travis-ci.org/laminas/laminas-development-mode)
+[![Build Status](https://travis-ci.com/laminas/laminas-development-mode.svg?branch=master)](https://travis-ci.com/laminas/laminas-development-mode)
 [![Coverage Status](https://coveralls.io/repos/github/laminas/laminas-development-mode/badge.svg?branch=master)](https://coveralls.io/github/laminas/laminas-development-mode?branch=master)
 [![Total Downloads](https://poser.pugx.org/laminas/laminas-development-mode/downloads)](https://packagist.org/packages/laminas/laminas-development-mode)
 
