@@ -8,7 +8,6 @@
     ],
     "homepage": "https://laminas.dev",
     "support": {
-        "docs": "https://docs.laminas.dev/laminas-development-mode/",
         "issues": "https://github.com/laminas/laminas-development-mode/issues",
         "source": "https://github.com/laminas/laminas-development-mode",
         "rss": "https://github.com/laminas/laminas-development-mode/releases.atom",
