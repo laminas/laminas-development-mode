@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 3.2.1 - TBD
+## 3.2.1 - 2020-08-03
 
 ### Added
 
@@ -22,7 +22,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#7](https://github.com/laminas/laminas-development-mode/pull/7) fixes autoloader discovery when used on MacOS.
 
 ## 3.2.0 - 2018-05-07
 
