@@ -76,7 +76,7 @@ class DisableTest extends TestCase
         );
 
         fseek($this->errorStream, 0);
-        $this->assertContains(
+        $this->assertStringContainsString(
             'Invalid configuration returned from config/application.config.php',
             fread($this->errorStream, 4096),
             'Unexpected error message'
