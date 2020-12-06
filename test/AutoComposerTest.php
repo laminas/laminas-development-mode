@@ -23,7 +23,7 @@ class AutoComposerTest extends TestCase
     /** @var resource */
     private $errorStream;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->projectDir = vfsStream::setup('project', null, [
             'config' => [
@@ -35,7 +35,7 @@ class AutoComposerTest extends TestCase
         $this->errorStream = fopen('php://memory', 'w+');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         if (is_resource($this->errorStream)) {
             fclose($this->errorStream);

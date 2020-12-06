@@ -18,7 +18,7 @@ class StatusTest extends TestCase
     /** @var vfsStreamContainer */
     private $projectDir;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->projectDir = vfsStream::setup('project');
     }

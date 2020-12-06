@@ -26,7 +26,7 @@ class EnableTest extends TestCase
     /** @var Enable */
     private $command;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->projectDir = vfsStream::setup('project', null, [
             'config' => [
@@ -43,7 +43,7 @@ class EnableTest extends TestCase
         $this->command->method('supportsSymlinks')->willReturn(false);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         if (is_resource($this->errorStream)) {
             fclose($this->errorStream);

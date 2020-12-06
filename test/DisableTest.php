@@ -29,7 +29,7 @@ class DisableTest extends TestCase
     /** @var Disable */
     private $command;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->projectDir = vfsStream::setup('project', null, [
             'config' => [
@@ -42,7 +42,7 @@ class DisableTest extends TestCase
         $this->command = new Disable(vfsStream::url('project'), $this->errorStream);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         if (is_resource($this->errorStream)) {
             fclose($this->errorStream);
