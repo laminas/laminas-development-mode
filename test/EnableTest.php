@@ -26,7 +26,7 @@ class EnableTest extends TestCase
     /** @var Enable */
     private $command;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->projectDir = vfsStream::setup('project', null, [
             'config' => [
@@ -43,7 +43,7 @@ class EnableTest extends TestCase
         $this->command->method('supportsSymlinks')->willReturn(false);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         if (is_resource($this->errorStream)) {
             fclose($this->errorStream);
@@ -71,7 +71,7 @@ class EnableTest extends TestCase
         $this->assertSame(1, $command());
 
         fseek($this->errorStream, 0);
-        $this->assertContains(
+        $this->assertStringContainsString(
             'MISSING "config/development.config.php.dist"',
             fread($this->errorStream, 4096)
         );
@@ -93,7 +93,7 @@ class EnableTest extends TestCase
         );
 
         fseek($this->errorStream, 0);
-        $this->assertContains(
+        $this->assertStringContainsString(
             'Invalid configuration returned from config/application.config.php',
             fread($this->errorStream, 4096),
             'Unexpected error message'

@@ -18,7 +18,7 @@ class StatusTest extends TestCase
     /** @var vfsStreamContainer */
     private $projectDir;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->projectDir = vfsStream::setup('project');
     }
@@ -31,7 +31,7 @@ class StatusTest extends TestCase
         ob_start();
         $status();
         $output = ob_get_clean();
-        $this->assertContains('ENABLED', $output);
+        $this->assertStringContainsString('ENABLED', $output);
     }
 
     public function testIndicatesDisabledWhenDevelopmentConfigFileNotFound()
@@ -40,6 +40,6 @@ class StatusTest extends TestCase
         ob_start();
         $status();
         $output = ob_get_clean();
-        $this->assertContains('DISABLED', $output);
+        $this->assertStringContainsString('DISABLED', $output);
     }
 }

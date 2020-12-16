@@ -19,7 +19,7 @@ class HelpTest extends TestCase
         ob_start();
         $help();
         $output = ob_get_clean();
-        $this->assertContains('Enable/Disable development mode.', $output);
+        $this->assertStringContainsString('Enable/Disable development mode.', $output);
     }
 
     public function testCanProvideAlternateStream()
@@ -28,6 +28,6 @@ class HelpTest extends TestCase
         $help = new Help();
         $help($stream);
         fseek($stream, 0);
-        $this->assertContains('Enable/Disable development mode.', fread($stream, 4096));
+        $this->assertStringContainsString('Enable/Disable development mode.', fread($stream, 4096));
     }
 }
