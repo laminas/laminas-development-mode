@@ -2,27 +2,32 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 3.3.0 - TBD
+## 3.3.0 - 2020-12-16
 
 ### Added
 
 - [#9](https://github.com/laminas/laminas-development-mode/pull/9) adds support for PHP 8.0.
 
-### Changed
-
-- Nothing.
-
-### Deprecated
-
-- Nothing.
-
 ### Removed
 
 - [#9](https://github.com/laminas/laminas-development-mode/pull/9) removes support for PHP verions prior to 7.3.
 
-### Fixed
 
-- Nothing.
+-----
+
+### Release Notes for [3.3.0](https://github.com/laminas/laminas-development-mode/milestone/2)
+
+
+
+### 3.3.0
+
+- Total issues resolved: **1**
+- Total pull requests resolved: **1**
+- Total contributors: **2**
+
+#### Enhancement
+
+ - [9: Add PHP 8.0 Support](https://github.com/laminas/laminas-development-mode/pull/9) thanks to @stringerbell and @boesing
 
 ## 3.2.1 - 2020-08-03
 
