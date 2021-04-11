@@ -1,6 +1,6 @@
 # laminas-development-mode
 
-[![Build Status](https://github.com/laminas/laminas-development-mode/workflows/Continuous%20Integration/badge.svg)](https://github.com/laminas/laminas-development-mode/actions?query=workflow%3A"Continuous+Integration")
+[![Build Status](https://github.com/laminas/laminas-development-mode/workflows/continuous-integration.yml/badge.svg)](https://github.com/laminas/laminas-development-mode/actions/workflows/continuous-integration.yml")
 [![Total Downloads](https://poser.pugx.org/laminas/laminas-development-mode/downloads)](https://packagist.org/packages/laminas/laminas-development-mode)
 
 This package provides a script to allow you to enable and disable development
