@@ -23,7 +23,7 @@
     },
     "require-dev": {
         "laminas/laminas-coding-standard": "~1.0.0",
-        "mikey179/vfsstream": "^1.6.8",
+        "mikey179/vfsstream": "^1.6.10",
         "phpunit/phpunit": "^9.3"
     },
     "autoload": {
