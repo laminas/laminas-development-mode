@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace LaminasTest\DevelopmentMode;
 
@@ -7,6 +8,9 @@ use Laminas\DevelopmentMode\Status;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamContainer;
 use PHPUnit\Framework\TestCase;
+
+use function ob_get_clean;
+use function ob_start;
 
 class StatusTest extends TestCase
 {

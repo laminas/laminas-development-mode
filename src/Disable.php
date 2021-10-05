@@ -1,25 +1,31 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Laminas\DevelopmentMode;
 
 use RuntimeException;
 
+use function file_exists;
+use function fwrite;
+use function is_resource;
+use function sprintf;
+use function unlink;
+
+use const PHP_EOL;
+use const STDERR;
+
 class Disable
 {
     use ConfigDiscoveryTrait;
 
-    const DEVEL_CONFIG = 'config/development.config.php';
-    const DEVEL_LOCAL  = 'config/autoload/development.local.php';
+    public const DEVEL_CONFIG = 'config/development.config.php';
+    public const DEVEL_LOCAL  = 'config/autoload/development.local.php';
 
-    /**
-     * @var resource
-     */
+    /** @var resource */
     private $errorStream;
 
-    /**
-     * @param string Path to project.
-     */
+    /** @var string Path to project. */
     private $projectDir;
 
     /**
@@ -28,7 +34,7 @@ class Disable
      */
     public function __construct($projectDir = '', $errorStream = null)
     {
-        $this->projectDir = $projectDir;
+        $this->projectDir  = $projectDir;
         $this->errorStream = is_resource($errorStream) ? $errorStream : STDERR;
     }
 
