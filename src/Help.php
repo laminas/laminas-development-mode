@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Laminas\DevelopmentMode;
 
+use function fwrite;
+use function is_resource;
+
 class Help
 {
-    /**
-     * @var string
-     */
-    private $message = <<< EOH
+    /** @var string */
+    private $message = <<<EOH
 Enable/Disable development mode.
 
 Usage:
