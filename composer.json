@@ -18,8 +18,7 @@
         "sort-packages": true
     },
     "require": {
-        "php": "^7.3 || ~8.0.0 || ~8.1.0",
-        "laminas/laminas-zendframework-bridge": "^1.0"
+        "php": "^7.3 || ~8.0.0 || ~8.1.0"
     },
     "require-dev": {
         "laminas/laminas-coding-standard": "~2.3.0",
@@ -49,7 +48,7 @@
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
     },
-    "replace": {
-        "zfcampus/zf-development-mode": "^3.2.0"
+    "conflict": {
+        "zfcampus/zf-development-mode": "*"
     }
 }
