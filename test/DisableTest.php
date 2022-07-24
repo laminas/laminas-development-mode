@@ -64,14 +64,14 @@ class DisableTest extends TestCase
         return fread($this->errorStream, 4096);
     }
 
-    public function testIndicatesDisabledWhenDevelopmentConfigFileNotFound()
+    public function testIndicatesDisabledWhenDevelopmentConfigFileNotFound(): void
     {
         $command = $this->command;
         $this->expectOutputString('Development mode was already disabled.' . PHP_EOL);
         $this->assertSame(0, $command());
     }
 
-    public function testRaisesErrorMessageIfApplicationConfigDoesNotReturnAnArrayDevelopmentModeIsNotDisabled()
+    public function testRaisesErrorMessageIfApplicationConfigDoesNotReturnAnArrayDevelopmentModeIsNotDisabled(): void
     {
         file_put_contents(vfsStream::url('project/config/development.config.php'), $this->configStub);
         vfsStream::newFile('config/application.config.php')
@@ -92,7 +92,7 @@ class DisableTest extends TestCase
         );
     }
 
-    public function testWillRemoveLocalAutoloadDistConfigIfPresent()
+    public function testWillRemoveLocalAutoloadDistConfigIfPresent(): void
     {
         file_put_contents(vfsStream::url('project/config/development.config.php'), $this->configStub);
         file_put_contents(vfsStream::url('project/config/autoload/development.local.php'), $this->configStub);
@@ -116,7 +116,7 @@ class DisableTest extends TestCase
         );
     }
 
-    public function testRemovesDefaultConfigCacheFileIfPresent()
+    public function testRemovesDefaultConfigCacheFileIfPresent(): void
     {
         file_put_contents(vfsStream::url('project/config/development.config.php'), $this->configStub);
         $this->setUpDefaultCacheFile();
@@ -134,7 +134,7 @@ class DisableTest extends TestCase
         );
     }
 
-    public function testRemovesCustomConfigCacheFileIfPresent()
+    public function testRemovesCustomConfigCacheFileIfPresent(): void
     {
         file_put_contents(vfsStream::url('project/config/development.config.php'), $this->configStub);
         $this->setUpCustomCacheFile();
@@ -152,7 +152,7 @@ class DisableTest extends TestCase
         );
     }
 
-    public function testDevelopmentModeDisabledWhenApplicationConfigNotFound()
+    public function testDevelopmentModeDisabledWhenApplicationConfigNotFound(): void
     {
         file_put_contents(vfsStream::url('project/config/development.config.php'), $this->configStub);
         $command = $this->command;

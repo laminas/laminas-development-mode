@@ -15,7 +15,7 @@ use function ob_start;
 
 class HelpTest extends TestCase
 {
-    public function testWritesToStdoutWhenCalledWithNoArguments()
+    public function testWritesToStdoutWhenCalledWithNoArguments(): void
     {
         $help = new Help();
         ob_start();
@@ -24,7 +24,7 @@ class HelpTest extends TestCase
         $this->assertStringContainsString('Enable/Disable development mode.', $output);
     }
 
-    public function testCanProvideAlternateStream()
+    public function testCanProvideAlternateStream(): void
     {
         $stream = fopen('php://memory', 'w+');
         $help   = new Help();

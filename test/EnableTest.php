@@ -64,7 +64,7 @@ class EnableTest extends TestCase
         return fread($this->errorStream, 4096);
     }
 
-    public function testIndicatesEnabledWhenDevelopmentConfigFileFound()
+    public function testIndicatesEnabledWhenDevelopmentConfigFileFound(): void
     {
         vfsStream::newFile(Enable::DEVEL_CONFIG)
             ->at($this->projectDir);
@@ -73,7 +73,7 @@ class EnableTest extends TestCase
         $this->assertSame(0, $command());
     }
 
-    public function testRaisesErrorMessageIfMissingDevelopmentConfigDistFile()
+    public function testRaisesErrorMessageIfMissingDevelopmentConfigDistFile(): void
     {
         $command = $this->command;
         $this->assertSame(1, $command());
@@ -85,7 +85,7 @@ class EnableTest extends TestCase
         );
     }
 
-    public function testRaisesErrorMessageIfApplicationConfigDoesNotReturnAnArrayDevelopmentModeIsNotEnabled()
+    public function testRaisesErrorMessageIfApplicationConfigDoesNotReturnAnArrayDevelopmentModeIsNotEnabled(): void
     {
         vfsStream::newFile('config/development.config.php.dist')
             ->at($this->projectDir)
@@ -108,7 +108,7 @@ class EnableTest extends TestCase
         );
     }
 
-    public function testWillCopyLocalAutoloadDistConfigIfPresent()
+    public function testWillCopyLocalAutoloadDistConfigIfPresent(): void
     {
         vfsStream::newFile('config/development.config.php.dist')
             ->at($this->projectDir)
@@ -138,7 +138,7 @@ class EnableTest extends TestCase
         );
     }
 
-    public function testRemovesDefaultConfigCacheFileIfPresent()
+    public function testRemovesDefaultConfigCacheFileIfPresent(): void
     {
         vfsStream::newFile('config/development.config.php.dist')
             ->at($this->projectDir)
@@ -158,7 +158,7 @@ class EnableTest extends TestCase
         );
     }
 
-    public function testRemovesCustomConfigCacheFileIfPresent()
+    public function testRemovesCustomConfigCacheFileIfPresent(): void
     {
         vfsStream::newFile('config/development.config.php.dist')
             ->at($this->projectDir)
@@ -178,7 +178,7 @@ class EnableTest extends TestCase
         );
     }
 
-    public function testDevelopmentModeEnabledWhenApplicationConfigNotFound()
+    public function testDevelopmentModeEnabledWhenApplicationConfigNotFound(): void
     {
         vfsStream::newFile('config/development.config.php.dist')
             ->at($this->projectDir)
@@ -193,7 +193,7 @@ class EnableTest extends TestCase
         );
     }
 
-    public function testRemovesDefaultMezzioConfigCacheFileIfPresent()
+    public function testRemovesDefaultMezzioConfigCacheFileIfPresent(): void
     {
         vfsStream::newFile('config/development.config.php.dist')
             ->at($this->projectDir)
