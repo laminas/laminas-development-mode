@@ -22,7 +22,7 @@ class StatusTest extends TestCase
         $this->projectDir = vfsStream::setup('project');
     }
 
-    public function testIndicatesEnabledWhenDevelopmentConfigFileFound()
+    public function testIndicatesEnabledWhenDevelopmentConfigFileFound(): void
     {
         vfsStream::newFile(Status::DEVEL_CONFIG)
             ->at($this->projectDir);
@@ -33,7 +33,7 @@ class StatusTest extends TestCase
         $this->assertStringContainsString('ENABLED', $output);
     }
 
-    public function testIndicatesDisabledWhenDevelopmentConfigFileNotFound()
+    public function testIndicatesDisabledWhenDevelopmentConfigFileNotFound(): void
     {
         $status = new Status();
         ob_start();

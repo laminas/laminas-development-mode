@@ -45,7 +45,7 @@ class AutoComposerTest extends TestCase
         }
     }
 
-    public function testIndicatesEnvironmentVariableNotSet()
+    public function testIndicatesEnvironmentVariableNotSet(): void
     {
         putenv('COMPOSER_DEV_MODE');
         $command = new AutoComposer(vfsStream::url('project'), $this->errorStream);
@@ -53,7 +53,7 @@ class AutoComposerTest extends TestCase
         $this->assertSame(0, $command());
     }
 
-    public function testIndicatesEnvironmentVariableSetNull()
+    public function testIndicatesEnvironmentVariableSetNull(): void
     {
         putenv('COMPOSER_DEV_MODE=0');
         $command = new AutoComposer(vfsStream::url('project'), $this->errorStream);
@@ -61,14 +61,14 @@ class AutoComposerTest extends TestCase
         $this->assertSame(0, $command());
     }
 
-    public function testIndicatesEnvironmentVariableSetOne()
+    public function testIndicatesEnvironmentVariableSetOne(): void
     {
         putenv('COMPOSER_DEV_MODE=1');
         $command = new AutoComposer(vfsStream::url('project'), $this->errorStream);
         $this->assertSame(1, $command());
     }
 
-    public function testIndicatesEnvironmentVariableSetArbitrary()
+    public function testIndicatesEnvironmentVariableSetArbitrary(): void
     {
         putenv('COMPOSER_DEV_MODE=XX');
         $command = new AutoComposer(vfsStream::url('project'), $this->errorStream);
