@@ -22,14 +22,12 @@ class EnableTest extends TestCase
 {
     use RemoveCacheFileTrait;
 
-    /** @var vfsStreamContainer */
-    private $projectDir;
+    private vfsStreamContainer $projectDir;
 
     /** @var resource */
     private $errorStream;
 
-    /** @var Enable */
-    private $command;
+    private Enable $command;
 
     protected function setUp(): void
     {

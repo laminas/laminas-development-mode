@@ -9,8 +9,7 @@ use function is_resource;
 
 class Help
 {
-    /** @var string */
-    private $message = <<<EOH
+    private string $message = <<<EOH
 Enable/Disable development mode.
 
 Usage:
