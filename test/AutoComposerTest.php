@@ -20,8 +20,7 @@ class AutoComposerTest extends TestCase
 {
     use RemoveCacheFileTrait;
 
-    /** @var vfsStreamContainer */
-    private $projectDir;
+    private vfsStreamContainer $projectDir;
 
     /** @var resource */
     private $errorStream;

@@ -14,8 +14,7 @@ use function ob_start;
 
 class StatusTest extends TestCase
 {
-    /** @var vfsStreamContainer */
-    private $projectDir;
+    private vfsStreamContainer $projectDir;
 
     protected function setUp(): void
     {

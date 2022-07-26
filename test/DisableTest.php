@@ -23,17 +23,14 @@ class DisableTest extends TestCase
 {
     use RemoveCacheFileTrait;
 
-    /** @var vfsStreamContainer */
-    private $projectDir;
+    private vfsStreamContainer $projectDir;
 
     /** @var resource */
     private $errorStream;
 
-    /** @var string */
-    private $configStub;
+    private string $configStub;
 
-    /** @var Disable */
-    private $command;
+    private Disable $command;
 
     protected function setUp(): void
     {

@@ -13,8 +13,7 @@ class Status
 {
     public const DEVEL_CONFIG = 'config/development.config.php';
 
-    /** @var string */
-    private $develConfigFile;
+    private string $develConfigFile;
 
     /**
      * @param string $projectDir Location to resolve project from.
