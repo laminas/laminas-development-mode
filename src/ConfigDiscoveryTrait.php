@@ -46,10 +46,8 @@ trait ConfigDiscoveryTrait
 
     /**
      * Retrieve the config cache file, if any.
-     *
-     * @return false|string
      */
-    private function getConfigCacheFile()
+    private function getConfigCacheFile(): false|string
     {
         $config = $this->getApplicationConfig();
 
