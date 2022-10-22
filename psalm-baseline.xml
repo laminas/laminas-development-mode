@@ -30,6 +30,12 @@
       <code>$this-&gt;applicationConfigPath</code>
       <code>isset($this-&gt;projectDir)</code>
     </RedundantPropertyInitializationCheck>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>isset($this-&gt;projectDir)</code>
+    </RedundantConditionGivenDocblockType>
+    <DocblockTypeContradiction occurrences="1">
+      <code>$this-&gt;applicationConfigPath</code>
+    </DocblockTypeContradiction>
   </file>
   <file src="test/AutoComposerTest.php">
     <InvalidPropertyAssignmentValue occurrences="1">
