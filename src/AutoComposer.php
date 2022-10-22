@@ -40,17 +40,13 @@ class AutoComposer
         '1', // development mode
     ];
 
-    /** @var string Path to project. */
-    private string $projectDir;
-
     /**
      * @param string $projectDir Location to resolve project from.
      * @param null|resource $errorStream Stream to which to write errors; defaults to STDERR
      */
-    public function __construct($projectDir = '', $errorStream = null)
+    public function __construct(private $projectDir = '', $errorStream = null)
     {
         $this->composerDevMode = getenv(self::COMPOSER_DEV_MODE);
-        $this->projectDir      = $projectDir;
         $this->errorStream     = is_resource($errorStream) ? $errorStream : STDERR;
     }
 
