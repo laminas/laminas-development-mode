@@ -11,7 +11,6 @@ use PHPUnit\Framework\TestCase;
 
 use function fclose;
 use function fopen;
-use function is_resource;
 use function putenv;
 
 use const PHP_EOL;
@@ -39,9 +38,7 @@ class AutoComposerTest extends TestCase
 
     public function tearDown(): void
     {
-        if (is_resource($this->errorStream)) {
-            fclose($this->errorStream);
-        }
+        fclose($this->errorStream);
     }
 
     public function testIndicatesEnvironmentVariableNotSet(): void

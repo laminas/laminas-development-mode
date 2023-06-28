@@ -14,7 +14,6 @@ use function file_exists;
 use function fopen;
 use function fread;
 use function fseek;
-use function is_resource;
 
 use const PHP_EOL;
 
@@ -41,22 +40,17 @@ class EnableTest extends TestCase
         $this->errorStream = fopen('php://memory', 'w+');
         $this->command     = $this->getMockBuilder(Enable::class)
             ->setConstructorArgs([vfsStream::url('project'), $this->errorStream])
-            ->setMethods(['supportsSymlinks'])
+            ->onlyMethods(['supportsSymlinks'])
             ->getMock();
         $this->command->method('supportsSymlinks')->willReturn(false);
     }
 
     protected function tearDown(): void
     {
-        if (is_resource($this->errorStream)) {
-            fclose($this->errorStream);
-        }
+        fclose($this->errorStream);
     }
 
-    /**
-     * @return bool|string
-     */
-    public function readErrorStream()
+    public function readErrorStream(): false|string
     {
         fseek($this->errorStream, 0);
         return fread($this->errorStream, 4096);
@@ -124,7 +118,7 @@ class EnableTest extends TestCase
         $this->assertSame(
             0,
             $result,
-            'Did not get expected return value from invoking enable; errors: ' . $this->readErrorStream()
+            'Did not get expected return value from invoking enable; errors: ' . (string) $this->readErrorStream()
         );
         $this->assertTrue(
             file_exists(vfsStream::url('project') . '/config/development.config.php'),
