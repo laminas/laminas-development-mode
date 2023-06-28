@@ -1,74 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.24.0@06dd975cb55d36af80f242561738f16c5f58264f">
-  <file src="src/AutoComposer.php">
-    <DocblockTypeContradiction occurrences="2">
-      <code>$this-&gt;composerDevMode === false</code>
-      <code>$this-&gt;composerDevMode === false</code>
-    </DocblockTypeContradiction>
-    <PossiblyFalsePropertyAssignmentValue occurrences="1">
-      <code>getenv(self::COMPOSER_DEV_MODE)</code>
-    </PossiblyFalsePropertyAssignmentValue>
-  </file>
+<files psalm-version="5.13.1@086b94371304750d1c673315321a55d15fc59015">
   <file src="src/Command.php">
-    <MixedAssignment occurrences="1">
+    <MixedAssignment>
       <code>$argument</code>
     </MixedAssignment>
   </file>
   <file src="src/ConfigDiscoveryTrait.php">
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>removeConfigCacheFile</code>
     </MissingReturnType>
-    <MixedAssignment occurrences="1">
-      <code>$this-&gt;applicationConfig</code>
+    <MixedAssignment>
+      <code><![CDATA[$this->applicationConfig]]></code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="3">
+    <MixedInferredReturnType>
       <code>false|string</code>
       <code>null|string</code>
       <code>null|string</code>
     </MixedInferredReturnType>
-    <RedundantPropertyInitializationCheck occurrences="2">
-      <code>$this-&gt;applicationConfigPath</code>
-      <code>isset($this-&gt;projectDir)</code>
-    </RedundantPropertyInitializationCheck>
-    <RedundantConditionGivenDocblockType occurrences="1">
-      <code>isset($this-&gt;projectDir)</code>
+    <RedundantConditionGivenDocblockType>
+      <code><![CDATA[isset($this->projectDir)]]></code>
     </RedundantConditionGivenDocblockType>
-    <DocblockTypeContradiction occurrences="1">
-      <code>$this-&gt;applicationConfigPath</code>
+    <DocblockTypeContradiction>
+      <code><![CDATA[$this->applicationConfigPath]]></code>
     </DocblockTypeContradiction>
   </file>
   <file src="test/AutoComposerTest.php">
-    <InvalidPropertyAssignmentValue occurrences="1">
-      <code>$this-&gt;errorStream</code>
+    <InvalidPropertyAssignmentValue>
+      <code><![CDATA[$this->errorStream]]></code>
     </InvalidPropertyAssignmentValue>
-    <RedundantConditionGivenDocblockType occurrences="1">
-      <code>is_resource($this-&gt;errorStream)</code>
-    </RedundantConditionGivenDocblockType>
   </file>
   <file src="test/DisableTest.php">
-    <InvalidPropertyAssignmentValue occurrences="1">
-      <code>$this-&gt;errorStream</code>
+    <InvalidPropertyAssignmentValue>
+      <code><![CDATA[$this->errorStream]]></code>
     </InvalidPropertyAssignmentValue>
-    <RedundantConditionGivenDocblockType occurrences="1">
-      <code>is_resource($this-&gt;errorStream)</code>
-    </RedundantConditionGivenDocblockType>
   </file>
   <file src="test/EnableTest.php">
-    <DeprecatedMethod occurrences="1">
-      <code>setMethods</code>
-    </DeprecatedMethod>
-    <InvalidPropertyAssignmentValue occurrences="1">
-      <code>$this-&gt;errorStream</code>
+    <InvalidPropertyAssignmentValue>
+      <code><![CDATA[$this->errorStream]]></code>
     </InvalidPropertyAssignmentValue>
-    <RedundantConditionGivenDocblockType occurrences="1">
-      <code>is_resource($this-&gt;errorStream)</code>
-    </RedundantConditionGivenDocblockType>
-  </file>
-  <file src="test/RemoveCacheFileTrait.php">
-    <MissingReturnType occurrences="3">
-      <code>setUpCustomCacheFile</code>
-      <code>setUpDefaultCacheFile</code>
-      <code>setUpDefaultMezzioCacheFile</code>
-    </MissingReturnType>
   </file>
 </files>

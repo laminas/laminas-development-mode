@@ -15,7 +15,6 @@ use function file_put_contents;
 use function fopen;
 use function fread;
 use function fseek;
-use function is_resource;
 
 use const PHP_EOL;
 
@@ -47,15 +46,10 @@ class DisableTest extends TestCase
 
     protected function tearDown(): void
     {
-        if (is_resource($this->errorStream)) {
-            fclose($this->errorStream);
-        }
+        fclose($this->errorStream);
     }
 
-    /**
-     * @return bool|string
-     */
-    public function readErrorStream()
+    public function readErrorStream(): false|string
     {
         fseek($this->errorStream, 0);
         return fread($this->errorStream, 4096);
@@ -101,7 +95,7 @@ class DisableTest extends TestCase
         $this->assertSame(
             0,
             $result,
-            'Did not get expected return value from invoking disable; errors: ' . $this->readErrorStream()
+            'Did not get expected return value from invoking disable; errors: ' . (string) $this->readErrorStream()
         );
         $this->assertFalse(
             file_exists(vfsStream::url('project/config/development.config.php')),
