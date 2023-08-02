@@ -116,7 +116,7 @@ trait ConfigDiscoveryTrait
             return $this->applicationConfig;
         }
 
-        $configFile = isset($this->projectDir)
+        $configFile = !empty($this->projectDir)
             ? sprintf('%s/%s', $this->projectDir, $this->applicationConfigPath)
             : $this->applicationConfigPath;
 
