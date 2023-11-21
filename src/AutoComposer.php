@@ -34,12 +34,6 @@ class AutoComposer
     /** @var resource */
     private $errorStream;
 
-    /** @var string[] */
-    private array $expectedValues = [
-        '0', // production mode
-        '1', // development mode
-    ];
-
     /**
      * @param string $projectDir Location to resolve project from.
      * @param null|resource $errorStream Stream to which to write errors; defaults to STDERR

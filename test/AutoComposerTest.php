@@ -19,6 +19,7 @@ class AutoComposerTest extends TestCase
 {
     use RemoveCacheFileTrait;
 
+    /** @psalm-suppress UnusedProperty */
     private vfsStreamContainer $projectDir;
 
     /** @var resource */
