@@ -6,8 +6,10 @@ namespace Laminas\DevelopmentMode;
 
 use RuntimeException;
 
+use function assert;
 use function file_exists;
 use function is_array;
+use function is_string;
 use function sprintf;
 use function unlink;
 
@@ -15,6 +17,8 @@ use const PHP_EOL;
 
 /**
  * Shared functionality for the Disable/Enable commands.
+ *
+ * @internal
  */
 trait ConfigDiscoveryTrait
 {
@@ -33,11 +37,11 @@ trait ConfigDiscoveryTrait
     /**
      * Removes the application configuration cache file, if present.
      */
-    private function removeConfigCacheFile()
+    private function removeConfigCacheFile(): void
     {
         $configCacheFile = $this->getConfigCacheFile();
 
-        if (! $configCacheFile || ! file_exists($configCacheFile)) {
+        if ($configCacheFile === false || ! file_exists($configCacheFile)) {
             return;
         }
 
@@ -51,20 +55,20 @@ trait ConfigDiscoveryTrait
     {
         $config = $this->getApplicationConfig();
 
-        if (isset($config['config_cache_path'])) {
+        if (isset($config['config_cache_path']) && is_string($config['config_cache_path'])) {
             return $config['config_cache_path'];
         }
 
         $configCacheDir = $this->getConfigCacheDir();
 
-        if (! $configCacheDir) {
+        if ($configCacheDir === null) {
             return false;
         }
 
         $path = sprintf('%s/%s.', $configCacheDir, $this->configCacheBase);
 
         $configCacheKey = $this->getConfigCacheKey();
-        if ($configCacheKey) {
+        if ($configCacheKey !== null) {
             $path .= $configCacheKey . '.';
         }
 
@@ -73,32 +77,32 @@ trait ConfigDiscoveryTrait
 
     /**
      * Return the configured configuration cache directory, if any.
-     *
-     * @return null|string
      */
-    private function getConfigCacheDir()
+    private function getConfigCacheDir(): string|null
     {
-        $config = $this->getApplicationConfig();
-        if (empty($config['module_listener_options']['cache_dir'])) {
-            return null;
-        }
+        $config  = $this->getApplicationConfig();
+        $options = $config['module_listener_options'] ?? [];
+        assert(is_array($options));
+        /** @psalm-var mixed $directory */
+        $directory = $options['cache_dir'] ?? null;
 
-        return $config['module_listener_options']['cache_dir'];
+        return is_string($directory) && $directory !== '' ? $directory : null;
     }
 
     /**
      * Return the configured configuration cache key, if any.
-     *
-     * @return null|string
      */
-    private function getConfigCacheKey()
+    private function getConfigCacheKey(): null|string
     {
-        $config = $this->getApplicationConfig();
-        if (empty($config['module_listener_options']['config_cache_key'])) {
+        $config  = $this->getApplicationConfig();
+        $options = $config['module_listener_options'] ?? [];
+        assert(is_array($options));
+        $key = $options['config_cache_key'] ?? null;
+        if (! is_string($key) || $key === '') {
             return null;
         }
 
-        return $config['module_listener_options']['config_cache_key'];
+        return $key;
     }
 
     /**
