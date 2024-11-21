@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.15.0@5c774aca4746caf3d239d9c8cadb9f882ca29352">
+<files psalm-version="5.26.1@d747f6500b38ac4f7dfc5edbcae6e4b637d7add0">
   <file src="src/Command.php">
     <MixedAssignment>
-      <code>$argument</code>
+      <code><![CDATA[$argument]]></code>
     </MixedAssignment>
   </file>
   <file src="src/ConfigDiscoveryTrait.php">
     <DocblockTypeContradiction>
       <code><![CDATA[$this->applicationConfigPath]]></code>
     </DocblockTypeContradiction>
-    <MissingReturnType>
-      <code>removeConfigCacheFile</code>
-    </MissingReturnType>
     <MixedAssignment>
       <code><![CDATA[$this->applicationConfig]]></code>
     </MixedAssignment>
-    <MixedInferredReturnType>
-      <code>false|string</code>
-      <code>null|string</code>
-      <code>null|string</code>
-    </MixedInferredReturnType>
     <RedundantConditionGivenDocblockType>
       <code><![CDATA[isset($this->projectDir)]]></code>
     </RedundantConditionGivenDocblockType>
