@@ -23,6 +23,8 @@ use const STDERR;
  *
  * If the `COMPOSER_DEV_MODE` environment variable is missing, then the command
  * does nothing.
+ *
+ * @final
  */
 class AutoComposer
 {

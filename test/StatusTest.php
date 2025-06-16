@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 use function ob_get_clean;
 use function ob_start;
 
-class StatusTest extends TestCase
+final class StatusTest extends TestCase
 {
     private vfsStreamContainer $projectDir;
 

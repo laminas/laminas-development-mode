@@ -15,7 +15,7 @@ use function putenv;
 
 use const PHP_EOL;
 
-class AutoComposerTest extends TestCase
+final class AutoComposerTest extends TestCase
 {
     use RemoveCacheFileTrait;
 

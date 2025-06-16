@@ -18,7 +18,7 @@ use function fseek;
 
 use const PHP_EOL;
 
-class DisableTest extends TestCase
+final class DisableTest extends TestCase
 {
     use RemoveCacheFileTrait;
 

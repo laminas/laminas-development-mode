@@ -11,6 +11,7 @@ use function fwrite;
 use const PHP_EOL;
 use const STDERR;
 
+/** @final */
 class Command
 {
     /**

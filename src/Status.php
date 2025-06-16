@@ -9,6 +9,7 @@ use function sprintf;
 
 use const PHP_EOL;
 
+/** @final */
 class Status
 {
     public const DEVEL_CONFIG = 'config/development.config.php';

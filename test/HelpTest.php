@@ -13,7 +13,7 @@ use function fseek;
 use function ob_get_clean;
 use function ob_start;
 
-class HelpTest extends TestCase
+final class HelpTest extends TestCase
 {
     public function testWritesToStdoutWhenCalledWithNoArguments(): void
     {
