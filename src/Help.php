@@ -7,6 +7,7 @@ namespace Laminas\DevelopmentMode;
 use function fwrite;
 use function is_resource;
 
+/** @final */
 class Help
 {
     private string $message = <<<EOH

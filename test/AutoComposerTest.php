@@ -15,7 +15,7 @@ use function putenv;
 
 use const PHP_EOL;
 
-class AutoComposerTest extends TestCase
+final class AutoComposerTest extends TestCase
 {
     use RemoveCacheFileTrait;
 
@@ -27,14 +27,16 @@ class AutoComposerTest extends TestCase
 
     public function setUp(): void
     {
-        $this->projectDir  = vfsStream::setup('project', null, [
+        $this->projectDir = vfsStream::setup('project', null, [
             'config' => [
                 'autoload' => [],
             ],
             'cache'  => [],
             'data'   => [],
         ]);
-        $this->errorStream = fopen('php://memory', 'w+');
+        $resource         = fopen('php://memory', 'w+');
+        self::assertNotFalse($resource);
+        $this->errorStream = $resource;
     }
 
     public function tearDown(): void
@@ -47,7 +49,7 @@ class AutoComposerTest extends TestCase
         putenv('COMPOSER_DEV_MODE');
         $command = new AutoComposer(vfsStream::url('project'), $this->errorStream);
         $this->expectOutputString('COMPOSER_DEV_MODE not set. Nothing to do.' . PHP_EOL);
-        $this->assertSame(0, $command());
+        self::assertSame(0, $command());
     }
 
     public function testIndicatesEnvironmentVariableSetNull(): void
@@ -55,14 +57,14 @@ class AutoComposerTest extends TestCase
         putenv('COMPOSER_DEV_MODE=0');
         $command = new AutoComposer(vfsStream::url('project'), $this->errorStream);
         $this->expectOutputString('Development mode was already disabled.' . PHP_EOL);
-        $this->assertSame(0, $command());
+        self::assertSame(0, $command());
     }
 
     public function testIndicatesEnvironmentVariableSetOne(): void
     {
         putenv('COMPOSER_DEV_MODE=1');
         $command = new AutoComposer(vfsStream::url('project'), $this->errorStream);
-        $this->assertSame(1, $command());
+        self::assertSame(1, $command());
     }
 
     public function testIndicatesEnvironmentVariableSetArbitrary(): void
@@ -70,6 +72,6 @@ class AutoComposerTest extends TestCase
         putenv('COMPOSER_DEV_MODE=XX');
         $command = new AutoComposer(vfsStream::url('project'), $this->errorStream);
         $this->expectOutputString('COMPOSER_DEV_MODE set to unexpected value (\'XX\'). Nothing to do.' . PHP_EOL);
-        $this->assertSame(1, $command());
+        self::assertSame(1, $command());
     }
 }

@@ -19,6 +19,7 @@ use const PHP_EOL;
 use const PHP_OS;
 use const STDERR;
 
+/** @final */
 class Enable
 {
     use ConfigDiscoveryTrait;

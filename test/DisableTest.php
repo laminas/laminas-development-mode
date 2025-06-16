@@ -18,7 +18,7 @@ use function fseek;
 
 use const PHP_EOL;
 
-class DisableTest extends TestCase
+final class DisableTest extends TestCase
 {
     use RemoveCacheFileTrait;
 
@@ -33,13 +33,15 @@ class DisableTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->projectDir  = vfsStream::setup('project', null, [
+        $this->projectDir = vfsStream::setup('project', null, [
             'config' => [
                 'autoload' => [],
             ],
             'cache'  => [],
         ]);
-        $this->errorStream = fopen('php://memory', 'w+');
+        $resource         = fopen('php://memory', 'w+');
+        self::assertNotFalse($resource);
+        $this->errorStream = $resource;
         $this->configStub  = '<' . "?php\nreturn [];";
         $this->command     = new Disable(vfsStream::url('project'), $this->errorStream);
     }
@@ -59,7 +61,7 @@ class DisableTest extends TestCase
     {
         $command = $this->command;
         $this->expectOutputString('Development mode was already disabled.' . PHP_EOL);
-        $this->assertSame(0, $command());
+        self::assertSame(0, $command());
     }
 
     public function testRaisesErrorMessageIfApplicationConfigDoesNotReturnAnArrayDevelopmentModeIsNotDisabled(): void
@@ -69,16 +71,18 @@ class DisableTest extends TestCase
             ->at($this->projectDir)
             ->setContent('');
         $command = $this->command;
-        $this->assertSame(1, $command(), 'Did not get expected return value from invoking disable');
-        $this->assertTrue(
+        self::assertSame(1, $command(), 'Did not get expected return value from invoking disable');
+        self::assertTrue(
             file_exists(vfsStream::url('project') . '/config/development.config.php'),
             'Distribution development config was removed'
         );
 
         fseek($this->errorStream, 0);
-        $this->assertStringContainsString(
+        $output = fread($this->errorStream, 4096);
+        self::assertNotFalse($output);
+        self::assertStringContainsString(
             'Invalid configuration returned from config/application.config.php',
-            fread($this->errorStream, 4096),
+            $output,
             'Unexpected error message'
         );
     }
@@ -92,16 +96,16 @@ class DisableTest extends TestCase
 
         $this->expectOutputString('Development mode is now disabled.' . PHP_EOL);
         $result = $command();
-        $this->assertSame(
+        self::assertSame(
             0,
             $result,
             'Did not get expected return value from invoking disable; errors: ' . (string) $this->readErrorStream()
         );
-        $this->assertFalse(
+        self::assertFalse(
             file_exists(vfsStream::url('project/config/development.config.php')),
             'Distribution development config was not removed'
         );
-        $this->assertFalse(
+        self::assertFalse(
             file_exists(vfsStream::url('project/config/autoload/development.local.php')),
             'Distribution development local config was not removed'
         );
@@ -114,12 +118,12 @@ class DisableTest extends TestCase
         $command = $this->command;
 
         $this->expectOutputString('Development mode is now disabled.' . PHP_EOL);
-        $this->assertSame(0, $command(), 'Did not get expected return value from invoking disable');
-        $this->assertFalse(
+        self::assertSame(0, $command(), 'Did not get expected return value from invoking disable');
+        self::assertFalse(
             file_exists(vfsStream::url('project/config/development.config.php')),
             'Distribution development config was not removed'
         );
-        $this->assertFalse(
+        self::assertFalse(
             file_exists(vfsStream::url('project') . '/cache/module-config-cache.php'),
             'Config cache file was not removed'
         );
@@ -132,12 +136,12 @@ class DisableTest extends TestCase
         $command = $this->command;
 
         $this->expectOutputString('Development mode is now disabled.' . PHP_EOL);
-        $this->assertSame(0, $command(), 'Did not get expected return value from invoking disable');
-        $this->assertFalse(
+        self::assertSame(0, $command(), 'Did not get expected return value from invoking disable');
+        self::assertFalse(
             file_exists(vfsStream::url('project/config/development.config.php')),
             'Distribution development config was not removed'
         );
-        $this->assertFalse(
+        self::assertFalse(
             file_exists(vfsStream::url('project') . '/cache/module-config-cache.custom.php'),
             'Config cache file was not removed'
         );
@@ -149,8 +153,8 @@ class DisableTest extends TestCase
         $command = $this->command;
 
         $this->expectOutputString('Development mode is now disabled.' . PHP_EOL);
-        $this->assertSame(0, $command(), 'Did not get expected return value from invoking disable');
-        $this->assertFalse(
+        self::assertSame(0, $command(), 'Did not get expected return value from invoking disable');
+        self::assertFalse(
             file_exists(vfsStream::url('project/config/development.config.php')),
             'Distribution development config was not removed'
         );

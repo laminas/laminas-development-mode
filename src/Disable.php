@@ -15,6 +15,7 @@ use function unlink;
 use const PHP_EOL;
 use const STDERR;
 
+/** @final */
 class Disable
 {
     use ConfigDiscoveryTrait;

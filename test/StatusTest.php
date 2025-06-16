@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 use function ob_get_clean;
 use function ob_start;
 
-class StatusTest extends TestCase
+final class StatusTest extends TestCase
 {
     private vfsStreamContainer $projectDir;
 
@@ -29,7 +29,8 @@ class StatusTest extends TestCase
         ob_start();
         $status();
         $output = ob_get_clean();
-        $this->assertStringContainsString('ENABLED', $output);
+        self::assertIsString($output);
+        self::assertStringContainsString('ENABLED', $output);
     }
 
     public function testIndicatesDisabledWhenDevelopmentConfigFileNotFound(): void
@@ -38,6 +39,7 @@ class StatusTest extends TestCase
         ob_start();
         $status();
         $output = ob_get_clean();
-        $this->assertStringContainsString('DISABLED', $output);
+        self::assertIsString($output);
+        self::assertStringContainsString('DISABLED', $output);
     }
 }

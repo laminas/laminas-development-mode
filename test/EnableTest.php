@@ -17,7 +17,7 @@ use function fseek;
 
 use const PHP_EOL;
 
-class EnableTest extends TestCase
+final class EnableTest extends TestCase
 {
     use RemoveCacheFileTrait;
 
@@ -30,14 +30,16 @@ class EnableTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->projectDir  = vfsStream::setup('project', null, [
+        $this->projectDir = vfsStream::setup('project', null, [
             'config' => [
                 'autoload' => [],
             ],
             'cache'  => [],
             'data'   => [],
         ]);
-        $this->errorStream = fopen('php://memory', 'w+');
+        $resource         = fopen('php://memory', 'w+');
+        self::assertNotFalse($resource);
+        $this->errorStream = $resource;
         $this->command     = $this->getMockBuilder(Enable::class)
             ->setConstructorArgs([vfsStream::url('project'), $this->errorStream])
             ->onlyMethods(['supportsSymlinks'])
@@ -62,18 +64,20 @@ class EnableTest extends TestCase
             ->at($this->projectDir);
         $command = $this->command;
         $this->expectOutputString('Already in development mode!' . PHP_EOL);
-        $this->assertSame(0, $command());
+        self::assertSame(0, $command());
     }
 
     public function testRaisesErrorMessageIfMissingDevelopmentConfigDistFile(): void
     {
         $command = $this->command;
-        $this->assertSame(1, $command());
+        self::assertSame(1, $command());
 
         fseek($this->errorStream, 0);
-        $this->assertStringContainsString(
+        $output = fread($this->errorStream, 4096);
+        self::assertNotFalse($output);
+        self::assertStringContainsString(
             'MISSING "config/development.config.php.dist"',
-            fread($this->errorStream, 4096)
+            $output
         );
     }
 
@@ -86,16 +90,18 @@ class EnableTest extends TestCase
             ->at($this->projectDir)
             ->setContent('');
         $command = $this->command;
-        $this->assertSame(1, $command(), 'Did not get expected return value from invoking enable');
-        $this->assertFalse(
+        self::assertSame(1, $command(), 'Did not get expected return value from invoking enable');
+        self::assertFalse(
             file_exists(vfsStream::url('project') . '/config/development.config.php'),
             'Distribution development config was copied to new file'
         );
 
         fseek($this->errorStream, 0);
-        $this->assertStringContainsString(
+        $output = fread($this->errorStream, 4096);
+        self::assertNotFalse($output);
+        self::assertStringContainsString(
             'Invalid configuration returned from config/application.config.php',
-            fread($this->errorStream, 4096),
+            $output,
             'Unexpected error message'
         );
     }
@@ -115,16 +121,16 @@ class EnableTest extends TestCase
 
         $this->expectOutputString('You are now in development mode.' . PHP_EOL);
         $result = $command();
-        $this->assertSame(
+        self::assertSame(
             0,
             $result,
             'Did not get expected return value from invoking enable; errors: ' . (string) $this->readErrorStream()
         );
-        $this->assertTrue(
+        self::assertTrue(
             file_exists(vfsStream::url('project') . '/config/development.config.php'),
             'Distribution development config was not copied to new file'
         );
-        $this->assertTrue(
+        self::assertTrue(
             file_exists(vfsStream::url('project') . '/config/autoload/development.local.php'),
             'Distribution development local config was not copied to new file'
         );
@@ -139,12 +145,12 @@ class EnableTest extends TestCase
         $command = $this->command;
 
         $this->expectOutputString('You are now in development mode.' . PHP_EOL);
-        $this->assertSame(0, $command(), 'Did not get expected return value from invoking enable');
-        $this->assertTrue(
+        self::assertSame(0, $command(), 'Did not get expected return value from invoking enable');
+        self::assertTrue(
             file_exists(vfsStream::url('project') . '/config/development.config.php'),
             'Distribution development config was not copied to new file'
         );
-        $this->assertFalse(
+        self::assertFalse(
             file_exists(vfsStream::url('project') . '/cache/module-config-cache.php'),
             'Config cache file was not removed'
         );
@@ -159,12 +165,12 @@ class EnableTest extends TestCase
         $command = $this->command;
 
         $this->expectOutputString('You are now in development mode.' . PHP_EOL);
-        $this->assertSame(0, $command(), 'Did not get expected return value from invoking enable');
-        $this->assertTrue(
+        self::assertSame(0, $command(), 'Did not get expected return value from invoking enable');
+        self::assertTrue(
             file_exists(vfsStream::url('project') . '/config/development.config.php'),
             'Distribution development config was not copied to new file'
         );
-        $this->assertFalse(
+        self::assertFalse(
             file_exists(vfsStream::url('project') . '/cache/module-config-cache.custom.php'),
             'Config cache file was not removed'
         );
@@ -178,8 +184,8 @@ class EnableTest extends TestCase
         $command = $this->command;
 
         $this->expectOutputString('You are now in development mode.' . PHP_EOL);
-        $this->assertSame(0, $command(), 'Did not get expected return value from invoking enable');
-        $this->assertTrue(
+        self::assertSame(0, $command(), 'Did not get expected return value from invoking enable');
+        self::assertTrue(
             file_exists(vfsStream::url('project') . '/config/development.config.php'),
             'Distribution development config was not copied to new file'
         );
@@ -194,12 +200,12 @@ class EnableTest extends TestCase
         $command = $this->command;
 
         $this->expectOutputString('You are now in development mode.' . PHP_EOL);
-        $this->assertSame(0, $command(), 'Did not get expected return value from invoking enable');
-        $this->assertTrue(
+        self::assertSame(0, $command(), 'Did not get expected return value from invoking enable');
+        self::assertTrue(
             file_exists(vfsStream::url('project') . '/config/development.config.php'),
             'Distribution development config was not copied to new file'
         );
-        $this->assertFalse(
+        self::assertFalse(
             file_exists(vfsStream::url('project') . '/data/config-cache.php'),
             'Config cache file was not removed'
         );
