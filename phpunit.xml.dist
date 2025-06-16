@@ -4,14 +4,10 @@
          bootstrap="vendor/autoload.php"
          colors="true"
          cacheDirectory=".phpunit.cache"
-         displayDetailsOnIncompleteTests="true"
-         displayDetailsOnTestsThatTriggerWarnings="true"
-         displayDetailsOnTestsThatTriggerNotices="true"
-         displayDetailsOnTestsThatTriggerErrors="true"
-         displayDetailsOnTestsThatTriggerDeprecations="true"
-         displayDetailsOnSkippedTests="true"
+         displayDetailsOnAllIssues="true"
          failOnWarning="true"
          failOnDeprecation="true"
+         failOnPhpunitDeprecation="true"
          failOnNotice="true"
 >
     <testsuites>
