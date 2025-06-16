@@ -29,7 +29,8 @@ final class StatusTest extends TestCase
         ob_start();
         $status();
         $output = ob_get_clean();
-        $this->assertStringContainsString('ENABLED', $output);
+        self::assertIsString($output);
+        self::assertStringContainsString('ENABLED', $output);
     }
 
     public function testIndicatesDisabledWhenDevelopmentConfigFileNotFound(): void
@@ -38,6 +39,7 @@ final class StatusTest extends TestCase
         ob_start();
         $status();
         $output = ob_get_clean();
-        $this->assertStringContainsString('DISABLED', $output);
+        self::assertIsString($output);
+        self::assertStringContainsString('DISABLED', $output);
     }
 }

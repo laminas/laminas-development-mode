@@ -21,15 +21,19 @@ final class HelpTest extends TestCase
         ob_start();
         $help();
         $output = ob_get_clean();
-        $this->assertStringContainsString('Enable/Disable development mode.', $output);
+        self::assertIsString($output);
+        self::assertStringContainsString('Enable/Disable development mode.', $output);
     }
 
     public function testCanProvideAlternateStream(): void
     {
         $stream = fopen('php://memory', 'w+');
-        $help   = new Help();
+        self::assertNotFalse($stream);
+        $help = new Help();
         $help($stream);
         fseek($stream, 0);
-        $this->assertStringContainsString('Enable/Disable development mode.', fread($stream, 4096));
+        $output = fread($stream, 4096);
+        self::assertNotFalse($output);
+        self::assertStringContainsString('Enable/Disable development mode.', $output);
     }
 }
