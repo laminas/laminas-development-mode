@@ -5,17 +5,14 @@
          colors="true"
          cacheDirectory=".phpunit.cache"
          displayDetailsOnAllIssues="true"
-         failOnWarning="true"
-         failOnDeprecation="true"
-         failOnPhpunitDeprecation="true"
-         failOnNotice="true"
+         failOnAllIssues="true"
 >
     <testsuites>
         <testsuite name="laminas-development-mode Test Suite">
             <directory>./test</directory>
         </testsuite>
     </testsuites>
-    <source>
+    <source ignoreIndirectDeprecations="true">
         <include>
             <directory suffix=".php">./src</directory>
         </include>
